@@ -1791,58 +1791,11 @@ body {
         </div>
       </div>
 
-  <!-- Diagnostic Debug Panel (Visible outside the phone wrapper) -->
-  <div id="diag-panel" class="absolute bottom-2 right-2 bg-slate-900/90 text-emerald-400 p-4 rounded-xl font-mono text-[10px] z-[9999] max-w-xs border border-slate-800 space-y-1">
-    <div class="font-bold border-b border-slate-800 pb-1 text-slate-200">🔍 DIAGNOSTICS:</div>
-    <div id="diag-tw">Tailwind CDN: Loading...</div>
-    <div id="diag-js">JS app.js: Waiting...</div>
-    <div id="diag-splash">Splash Screen Classes: ...</div>
-    <div id="diag-splash-style">Splash Computed Style: ...</div>
-    <div id="diag-element">Visible Element at Center: ...</div>
-  </div>
 
-  <script>
-    // Local diagnostic script
-    window.addEventListener('load', function() {
-      // Check Tailwind
-      const twLoaded = typeof tailwind !== 'undefined';
-      document.getElementById('diag-tw').innerText = 'Tailwind CDN: ' + (twLoaded ? 'Loaded ✓' : 'FAILED ✗');
-      document.getElementById('diag-tw').className = twLoaded ? 'text-emerald-400' : 'text-rose-400';
-
-      // Check Splash Screen
-      const splash = document.getElementById('splash-screen');
-      if (splash) {
-        document.getElementById('diag-splash').innerText = 'Splash Classes: ' + splash.className;
-        const style = window.getComputedStyle(splash);
-        document.getElementById('diag-splash-style').innerText = 'Splash Style: display=' + style.display + ', opacity=' + style.opacity + ', bg=' + style.backgroundColor + ', height=' + style.height;
-      } else {
-        document.getElementById('diag-splash').innerText = 'Splash Element: NOT FOUND! ✗';
-        document.getElementById('diag-splash').className = 'text-rose-400';
-      }
-
-      // Check visible element at center of device-screen
-      const container = document.querySelector('.screen-container');
-      if (container) {
-        const rect = container.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const el = document.elementFromPoint(centerX, centerY);
-        if (el) {
-          document.getElementById('diag-element').innerText = 'Visible at Center: <' + el.tagName.toLowerCase() + '> id="' + el.id + '" class="' + el.className.split(' ').slice(0, 3).join(' ') + '..."';
-        } else {
-          document.getElementById('diag-element').innerText = 'Visible at Center: NONE ✗';
-        }
-      }
-    });
-  </script>
 
   <script>
 const initApp = () => {
-  const diagJs = document.getElementById('diag-js');
-  if (diagJs) {
-    diagJs.innerText = 'JS app.js: Initialized successfully ✓';
-    diagJs.className = 'text-emerald-400';
-  }
+
   
   // ================= STATE MANAGEMENT =================
   const screens = [
@@ -2517,6 +2470,52 @@ const initApp = () => {
     if (progress) progress.classList.add('hidden');
   };
 
+  // Caption dictionary for different goals
+  const goalCaptions = {
+    "Du lịch Nhật": {
+      0: "Mơ Nhật Bản nhưng ví đang ở... Nhật Tảo. 💸",
+      20: "Ít nhất giờ cũng đủ tiền... mua vali. 🧳",
+      50: "Tokyo bắt đầu hiện lên trong tầm mắt. 🇯🇵✨",
+      100: "Xin chào Nhật Bản. Gato tới đây! 🏆🚘"
+    },
+    "Mua xe": {
+      0: "Thèm bốn bánh nhưng ví chỉ đủ mua... bánh xe. 💸",
+      20: "Có tín hiệu rồi, đủ tiền mua... chiếc gương chiếu hậu. 🚗",
+      50: "Vô lăng xịn và tiếng nổ máy đã ở rất gần. 🏁",
+      100: "Nhấn ga lên đường, Gato đón cậu đi vi vu! 🏆🚘"
+    },
+    "Laptop mới": {
+      0: "Muốn code/edit mượt nhưng máy mở 3 tab là... bay màu. 💻",
+      20: "Tích luỹ tiến triển, đủ mua... cục sạc và chuột xịn. 🖱️",
+      50: "Cấu hình khủng Core i9 bắt đầu vẫy gọi. ⚡",
+      100: "Bấm nút Power, máy mượt chiến game hay làm việc phăm phăm! 🏆💻"
+    },
+    "Học lên cao": {
+      0: "Ước mơ học cao nhưng sách vở vẫn đang xếp xó. 📚",
+      20: "Đã có quỹ đóng tiền... tài liệu và giáo trình kỳ đầu. 📖",
+      50: "Học phí đã lo được nửa chặng, tự tin lên giảng đường! 🏫",
+      100: "Mũ cử nhân kiêu hãnh đội đầu, Gato chúc mừng Tân cử nhân! 🏆🎓"
+    },
+    "Đám cưới": {
+      0: "Muốn rước nàng về dinh nhưng ví trống trơn... 💍",
+      20: "Đã có tín hiệu vui, đủ cọc... bộ nhẫn cưới lấp lánh. ✨",
+      50: "Nhà hàng tiệc cưới sang trọng đã nằm trong tầm tay! 🥂",
+      100: "Pháo hoa nổ vang, trăm năm hạnh phúc cùng Gato! 🏆👰‍♀️🤵‍♂️"
+    },
+    "Mua căn hộ": {
+      0: "Mơ nhà lầu nhưng hiện tại đang... ở trọ cùng lũ bạn. 🏠",
+      20: "Có động lực rồi, đủ tiền mua... vài viên gạch nền móng. 🧱",
+      50: "Căn hộ mơ ước bắt đầu hoàn thiện nửa chặng đường. 🔑",
+      100: "Mở cửa tân gia, chào mừng cậu về tổ ấm mới của riêng mình! 🏆🏡"
+    },
+    "Quỹ khẩn cấp": {
+      0: "Chưa có quỹ dự phòng, lương về tay chưa kịp ấm đã đi sạch. 💸",
+      20: "An tâm hơn xíu, đủ tiền thuốc men nếu nhỡ sụt sịt cảm cúm. 💊",
+      50: "Bao giông bão cuộc đời ập tới cũng đã có điểm tựa vững chãi! 🛡️",
+      100: "Tài chính vững vàng, tự do an tâm sống không lo âu! 🏆❤️"
+    }
+  };
+
   window.updateGatoLevel = function(val) {
     const value = parseInt(val);
     const label = document.getElementById('progress-percentage-label');
@@ -2528,7 +2527,7 @@ const initApp = () => {
     const o50 = document.getElementById('outfit-50');
     const o100 = document.getElementById('outfit-100');
     const car = document.getElementById('gato-car');
-
+ 
     if (label) label.innerText = value + "%";
 
     // Calculate dynamic savings amount to show progress updating automatically
@@ -2538,7 +2537,11 @@ const initApp = () => {
       ratio.innerText = currentAmount.toLocaleString('vi-VN') + "đ / " + maxAmount.toLocaleString('vi-VN') + "đ";
     }
 
-    // Toggle outfits based on thresholds
+    // Determine goal and lookup caption
+    const goalKey = activeGoalText || "Du lịch Nhật";
+    const captions = goalCaptions[goalKey] || goalCaptions["Du lịch Nhật"];
+
+    // Toggle outfits based on thresholds and update dynamic caption
     if (value < 20) {
       if (o0) o0.style.opacity = '1';
       if (o20) o20.style.opacity = '0';
@@ -2548,7 +2551,7 @@ const initApp = () => {
         car.style.opacity = '0';
         car.style.transform = 'translateX(-48px)';
       }
-      if (desc) desc.innerHTML = '"Mơ Nhật Bản nhưng ví đang ở... Nhật Tảo. 💸"';
+      if (desc) desc.innerText = captions[0];
     } 
     else if (value >= 20 && value < 50) {
       if (o0) o0.style.opacity = '0';
@@ -2559,7 +2562,7 @@ const initApp = () => {
         car.style.opacity = '0';
         car.style.transform = 'translateX(-48px)';
       }
-      if (desc) desc.innerHTML = '"Ít nhất giờ cũng đủ tiền... mua vali. 🧳"';
+      if (desc) desc.innerText = captions[20];
     } 
     else if (value >= 50 && value < 100) {
       if (o0) o0.style.opacity = '0';
@@ -2570,7 +2573,7 @@ const initApp = () => {
         car.style.opacity = '0';
         car.style.transform = 'translateX(-48px)';
       }
-      if (desc) desc.innerHTML = '"Tokyo bắt đầu hiện lên trong tầm mắt. 🇯🇵✨"';
+      if (desc) desc.innerText = captions[50];
     } 
     else if (value === 100) {
       if (o0) o0.style.opacity = '0';
@@ -2581,7 +2584,7 @@ const initApp = () => {
         car.style.opacity = '1';
         car.style.transform = 'translateX(0px)';
       }
-      if (desc) desc.innerHTML = '"Xin chào Nhật Bản. Gato tới đây! 🏆🚘"';
+      if (desc) desc.innerText = captions[100];
     }
   };
 

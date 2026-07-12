@@ -8,25 +8,32 @@ Giao diện giả lập ứng dụng tài chính số **CakePro** kết hợp tr
 
 1. **🗺️ GATO Savings Journey (Bản đồ tiết kiệm)**:
    - Bản đồ hành trình đứt nét uốn lượn uốn quanh các mốc tài chính: *Chi tiêu tháng này*, *Mục tiêu tiết kiệm*, và *Sổ tiết kiệm*.
-   * Tương tác chuyển màn hình mượt mà, đồng bộ trạng thái điều hướng.
+   - Nhấp vào từng cột mốc để mở ra các phân hệ quản lý tài chính tương ứng.
 
 2. **📊 Spending Manager (Thống kê chi tiêu chi tiết)**:
+   - Truy cập qua mốc **`Chi tiêu tháng này`**.
    - Biểu đồ vòng tròn phân bổ (Doughnut Chart) xây dựng bằng **nhiều phân khúc SVG** sắc nét, hiển thị chính xác tỉ lệ phần trăm bay lơ lửng xung quanh biểu đồ.
    - Bảng kê chi tiết các danh mục chính (*Nhà cửa, Học tập, Chợ búa, Ăn uống, Di chuyển, Giải trí*) có màu sắc đồng bộ với biểu đồ tròn.
 
-3. **🎮 Interactive GATO Level-Up (Thanh trượt lên đời)**:
-   - Kéo thanh trượt từ `0%` đến `100%` để chứng kiến hành trình "lên đời" diện mạo của linh vật GATO:
+3. **🎮 Interactive GATO Level-Up (Thanh trượt lên đời & Kiểu tóc)**:
+   - Truy cập qua mốc **`Mục tiêu tiết kiệm`**. Lựa chọn mục tiêu bất kỳ (Mua xe, Mua nhà, Laptop, Du lịch Nhật...) để mở ra giao diện GATO.
+   - Kéo thanh trượt từ `0%` đến `100%` để chứng kiến hành trình "lên đời" diện mạo và mái tóc của linh vật GATO:
      - **0%**: Đầu bù tóc rối chọc chỉa, đội nón lá tre, mặc áo bà ba vá bụng dạo chơi.
      - **20%**: Cắt tóc mái ngố gọn gàng, mặc áo hoodie xám năng động.
      - **50%**: Nhuộm tóc hồng spiky vuốt dựng cực chơi, đeo kính râm, khuyên tai vàng và xích vàng bản to.
      - **100%**: Tóc vuốt ngược bóng lộn của quý ông, đội vương miện, đeo kính râm VIP vàng, mặc Tuxedo thắt nơ đỏ và **siêu xe Rolls-Royce lướt ra đậu bên cạnh**.
    - Số tiền tiết kiệm tích lũy tự động cập nhật theo thời gian thực tương ứng với mức kéo.
 
-4. **🎙️ Voice Chat Assistant (Trợ lý Giọng nói giả lập)**:
+4. **💬 Floating Chat Bubble (Bong bóng thu phóng chat)**:
+   - Nằm gọn gàng ở góc dưới bên phải màn hình nâng cấp GATO, đi kèm tooltip hướng dẫn sinh động.
+   - Nhấp vào bong bóng để **mở/đóng khung chat tức thì** ngay trên cùng một màn hình nâng cấp GATO, giúp giao diện tối giản và gọn gàng hơn.
+   - Trợ lý ảo tự động dẫn dắt cuộc trò chuyện hỏi đáp mốc thời gian, số tiền và kịch bản phân tích trượt giá của BeCar.
+
+5. **🎙️ Voice Chat Assistant (Trợ lý Giọng nói giả lập)**:
    - Nhấp vào nút Micro nhảy nhót góc dưới màn hình hoặc nút Micro trong ô chat để kích hoạt ghi âm giọng nói.
    - Giả lập vòng sóng âm rung động, phát ra **âm thanh Beep** (sử dụng Web Audio API trực tiếp trên trình duyệt) và tự động nhận dạng lời nói của chủ nhân để cấu hình số tiền tiết kiệm.
 
-5. **📱 QR Scanner & Quick Actions**:
+6. **📱 QR Scanner & Quick Actions**:
    - Quét mã QR mô phỏng camera thực tế, phát tiếng bíp khi quét trúng mã và tự động cộng tiền vào tài khoản tiết kiệm.
    - Nút đăng xuất quay lại màn hình đăng nhập bảo mật.
 
