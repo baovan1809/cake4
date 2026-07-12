@@ -946,7 +946,7 @@ body {
                     </div>
 
                     <div class="relative z-10 flex flex-col items-center self-start ml-2 -mt-4 transform hover:scale-105 transition-transform duration-300">
-                      <button onclick="openGoalProgress()" class="w-13 h-13 rounded-full bg-[#7000FF] text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 border-4 border-white animate-pulse-glow quick-action-btn">
+                      <button onclick="handleGoalProgressClick()" class="w-13 h-13 rounded-full bg-[#7000FF] text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 border-4 border-white animate-pulse-glow quick-action-btn">
                         <!-- Target/Bullseye icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                       </button>
@@ -1127,6 +1127,17 @@ body {
                     </div>
                   </div>
                 </div>
+                
+                <!-- Floating Chat Bubble Action Button (Bottom Right) -->
+                <div class="absolute bottom-20 right-5 z-40 flex flex-col items-end gap-2">
+                  <div id="chat-bubble-tooltip" class="bg-slate-900/90 text-white text-[8px] font-black px-2.5 py-1.5 rounded-full shadow-md backdrop-blur-sm pointer-events-none select-none animate-bounce-soft">
+                    Hỏi trợ lý GATO 💬
+                  </div>
+                  <button id="toggle-chat-bubble-btn" onclick="toggleChatWidget()" class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#FF007F] via-[#d946ef] to-[#7000FF] text-white flex items-center justify-center shadow-lg shadow-pink-500/45 border-3 border-white transition-all transform hover:scale-105 active:scale-95 quick-action-btn">
+                    <!-- Chat icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-more"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+                  </button>
+                </div>
               </div>
 
                             <!-- 4E: GOAL PROGRESS VIEW (Hành trình GATO lên đời) -->
@@ -1264,39 +1275,101 @@ body {
                   <div class="bg-white rounded-3xl border border-slate-100 p-4.5 shadow-cake space-y-3 text-xs">
                     <div class="flex justify-between items-center pb-2.5 border-b border-slate-100/60">
                       <span class="text-slate-400 font-medium">Mục tiêu</span>
-                      <strong class="font-extrabold text-slate-800 text-right">Du lịch Nhật Bản</strong>
+                      <strong id="progress-goal-name" class="font-extrabold text-slate-800 text-right">Du lịch Nhật Bản</strong>
                     </div>
                     <div class="flex justify-between items-center pb-2.5 border-b border-slate-100/60">
                       <span class="text-slate-400 font-medium">Đã đạt tháng này</span>
                       <strong id="progress-ratio-label" class="font-extrabold text-[#FF007F] text-right">0đ / 2.800.000đ</strong>
                     </div>
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-center pb-2.5 border-b border-slate-100/60">
                       <span class="text-slate-400 font-medium">Hạn hoàn thành</span>
-                      <strong class="font-extrabold text-slate-800 text-right">06/2028</strong>
+                      <strong id="progress-deadline-label" class="font-extrabold text-slate-800 text-right">06/2028</strong>
                     </div>
+                    <button onclick="resetActiveGoal()" class="w-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-[10px] font-black text-slate-600 py-2.5 rounded-xl uppercase tracking-wider transition-all quick-action-btn mt-1">
+                      🎯 Thiết lập mục tiêu mới
+                    </button>
                   </div>
 
-                  <!-- Instruction Bubble -->
-                  <div class="flex items-start gap-2.5">
-                    <div class="w-8 h-8 rounded-full bg-pink-50 border border-pink-100 overflow-hidden flex items-center justify-center shrink-0">
-                      <img src="mascot.png" class="w-7 h-7 object-contain" alt="GATO Mascot">
+                  <!-- Chat simulation container embedded directly below Gato levels slider -->
+                  <div id="chat-container" class="bg-white rounded-3xl border border-pink-100 p-4.5 shadow-cake space-y-3.5 hidden">
+                    <div class="flex items-center justify-between border-b border-slate-100/60 pb-2 px-1">
+                      <h4 class="text-[7.5px] font-extrabold text-[#FF007F] tracking-wider uppercase px-1">Trò chuyện cùng Algoal mate</h4>
+                      <div class="flex items-center gap-1 pr-1">
+                        <span id="step-dot-1" class="w-3.5 h-1 rounded-full bg-slate-200 transition-colors"></span>
+                        <span id="step-dot-2" class="w-3.5 h-1 rounded-full bg-slate-200 transition-colors"></span>
+                        <span id="step-dot-3" class="w-3.5 h-1 rounded-full bg-slate-200 transition-colors"></span>
+                      </div>
                     </div>
-                    <div class="bg-slate-50 border border-slate-100 text-slate-600 px-3.5 py-2.5 rounded-2xl rounded-tl-none text-[9px] leading-relaxed shadow-sm flex-1">
-                      "Kéo thanh trượt để xem <strong>GATO 'lên đời'</strong> theo từng mốc cậu đạt được nha! 0% là bộ áo bà ba chân chất, 20% đã có áo thun xịn, còn 100% là auto sang chảnh kiểu Rolls-Royce luôn 😎"
+
+                    <!-- Chat messages area -->
+                    <div id="chat-messages" class="flex flex-col space-y-3 max-h-[220px] overflow-y-auto pr-1"></div>
+                    
+                    <!-- Option suggestion buttons -->
+                    <div id="chat-options" class="flex flex-col gap-2 mt-2"></div>
+                    
+                    <!-- Chat input bar with mic and send -->
+                    <div id="chat-input-wrapper" class="flex items-center gap-2 mt-3 bg-slate-50 p-2 rounded-2xl border border-slate-100 select-none">
+                      <div class="flex-1 bg-white border border-slate-100 rounded-xl px-2.5 py-2 flex items-center gap-2 shadow-inner focus-within:border-pink-300 transition-all">
+                        <!-- Microphone voice icon -->
+                        <button type="button" onclick="startVoiceRecognition()" class="text-slate-400 hover:text-[#FF007F] transition-colors shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                        </button>
+                        <input type="text" id="chat-text-input" placeholder="VD: 06/2028" class="bg-transparent border-none outline-none text-xs w-full text-slate-700 font-bold placeholder-slate-400" onkeydown="if(event.key === 'Enter') handleChatInputSubmit();" />
+                      </div>
+                      <!-- Send plane icon -->
+                      <button type="button" onclick="handleChatInputSubmit()" class="w-8.5 h-8.5 rounded-xl bg-cake-gradient text-white flex items-center justify-center shadow-md shadow-pink-500/20 active:scale-95 transition-all quick-action-btn shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
+                      </button>
                     </div>
                   </div>
+                </div>
+                
+                <!-- Floating Chat Bubble Action Button (Bottom Right) -->
+                <div class="absolute bottom-20 right-5 z-40 flex flex-col items-end gap-2">
+                  <div id="chat-bubble-tooltip" class="bg-slate-900/90 text-white text-[8px] font-black px-2.5 py-1.5 rounded-full shadow-md backdrop-blur-sm pointer-events-none select-none animate-bounce-soft">
+                    Hỏi trợ lý GATO 💬
+                  </div>
+                  <button id="toggle-chat-bubble-btn" onclick="toggleChatWidget()" class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#FF007F] via-[#d946ef] to-[#7000FF] text-white flex items-center justify-center shadow-lg shadow-pink-500/45 border-3 border-white transition-all transform hover:scale-105 active:scale-95 quick-action-btn">
+                    <!-- Chat icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle-more"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+                  </button>
                 </div>
               </div>
 
                             <!-- 4B: GOAL SELECTION GRID (Initially Hidden) -->
               <div id="goal-selection-view" class="flex flex-col h-full w-full hidden">
-                <!-- Header -->
-                <div class="px-5 pt-3 pb-2 flex items-center justify-between border-b border-slate-100 bg-white">
-                  <button onclick="closeGoalSelectionView()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                  </button>
-                  <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">MỤC TIÊU MƠ ƯỚC</h2>
-                  <div class="w-8"></div>
+                <!-- Dynamic Chat Header matching mockup -->
+                <div class="px-4 pt-3 pb-2.5 flex items-center justify-between border-b border-slate-100 bg-white z-10 shadow-sm shrink-0">
+                  <div class="flex items-center gap-2">
+                    <button id="back-to-grid-btn" onclick="resetToGoalGrid()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-500 flex items-center justify-center shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wide select-none">Quay lại</span>
+                  </div>
+
+                  <!-- Goal info & Mascot name -->
+                  <div id="chat-header-info" class="hidden flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-full bg-pink-50 border border-pink-100 overflow-hidden flex items-center justify-center shrink-0">
+                      <img src="mascot.png" class="w-6 h-6 object-contain" alt="Algoal mate">
+                    </div>
+                    <div class="flex flex-col">
+                      <span class="text-[8px] font-extrabold text-[#FF007F] leading-none uppercase">Algoal mate</span>
+                      <span id="chat-header-goal-name" class="text-[10px] font-black text-slate-800 mt-0.5 leading-none">Goal: Du lịch Nhật</span>
+                    </div>
+                  </div>
+
+                  <!-- Grid Title -->
+                  <h2 id="chat-grid-title" class="text-xs font-black text-slate-800 uppercase tracking-wider">MỤC TIÊU MƠ ƯỚC</h2>
+
+                  <!-- Hidden back to home link to satisfy legacy JS handlers -->
+                  <a id="back-to-home-link" class="hidden" href="#" onclick="navigateTo('home-screen'); return false;"></a>
+                  
+                  <!-- Step indicators - - - -->
+                  <div class="flex items-center gap-1 pr-2">
+                    <span id="step-dot-1" class="w-4 h-1 rounded-full bg-slate-200 transition-colors"></span>
+                    <span id="step-dot-2" class="w-4 h-1 rounded-full bg-slate-200 transition-colors"></span>
+                    <span id="step-dot-3" class="w-4 h-1 rounded-full bg-slate-200 transition-colors"></span>
+                  </div>
                 </div>
 
                 <!-- Viewport content -->
@@ -1369,29 +1442,7 @@ body {
                     </div>
                   </div>
 
-                  <!-- Chat simulation (Init hidden) -->
-                  <div id="chat-container" class="hidden flex flex-col h-[480px] justify-between pt-2">
-                    <!-- Scrollable message list -->
-                    <div id="chat-messages" class="flex-1 overflow-y-auto pr-1 flex flex-col space-y-3"></div>
-                    
-                    <!-- Option suggestion buttons -->
-                    <div id="chat-options" class="flex flex-col gap-2 mt-2"></div>
-                    
-                    <!-- Chat input box with voice icon and send plane -->
-                    <div id="chat-input-wrapper" class="flex items-center gap-2 mt-3 bg-slate-50 p-2 rounded-2xl border border-slate-100 select-none">
-                      <div class="flex-1 bg-white border border-slate-100 rounded-xl px-2.5 py-2 flex items-center gap-2 shadow-inner focus-within:border-pink-300 transition-all">
-                        <!-- Microphone voice icon -->
-                        <button type="button" onclick="startVoiceRecognition()" class="text-slate-400 hover:text-[#FF007F] transition-colors shrink-0">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-                        </button>
-                        <input type="text" id="chat-text-input" placeholder="VD: 06/2028" class="bg-transparent border-none outline-none text-xs w-full text-slate-700 font-bold placeholder-slate-400" onkeydown="if(event.key === 'Enter') handleChatInputSubmit();" />
-                      </div>
-                      <!-- Send plane icon -->
-                      <button type="button" onclick="handleChatInputSubmit()" class="w-8.5 h-8.5 rounded-xl bg-cake-gradient text-white flex items-center justify-center shadow-md shadow-pink-500/20 active:scale-95 transition-all quick-action-btn shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
-                      </button>
-                    </div>
-                  </div>
+
                 </div>
               </div>
 
@@ -1808,6 +1859,7 @@ const initApp = () => {
   // Selected Goal variables in-memory
   let selectedGoalText = "Du lịch Nhật";
   let selectedGoalEmoji = "🇯🇵";
+  let currentChatStep = 1;
   let isBalanceMasked = true; // Match home_2.jpg reference default state
 
   // ================= GENERAL HELPERS =================
@@ -1991,7 +2043,22 @@ const initApp = () => {
     card.addEventListener('click', () => {
       selectedGoalText = card.getAttribute('data-goal-text');
       selectedGoalEmoji = card.getAttribute('data-goal-emoji');
-      startGoalChat();
+      // Custom redirect
+      activeGoalText = selectedGoalText;
+      activeGoalEmoji = selectedGoalEmoji;
+      const selectionView = document.getElementById('goal-selection-view');
+      if (selectionView) selectionView.classList.add('hidden');
+      openGoalProgress();
+      syncGoalProgressUI();
+      // chatContainer left hidden by default
+      chatMessagesList.innerHTML = '';
+      chatOptionsContainer.innerHTML = '';
+      currentChatStep = 1;
+      showAIQuery("Khi nào cần? ⏰", [
+        { text: "Tháng 06/2028 (Khuyên dùng)", value: "06/2028" },
+        { text: "Cuối năm sau (12/2027)", value: "12/2027" },
+        { text: "Tự nhập mốc khác", value: "custom" }
+      ], handleStep1Response);
     });
   });
 
@@ -2002,11 +2069,11 @@ const initApp = () => {
   }
 
   function startGoalChat() {
-    goalGrid.classList.add('hidden');
-    discoveryHeading.classList.add('hidden');
-    backToGridBtn.classList.remove('hidden');
-    backToHomeLink.classList.add('hidden');
-    chatContainer.classList.remove('hidden');
+    if (goalGrid) goalGrid.classList.add('hidden');
+    if (discoveryHeading) discoveryHeading.classList.add('hidden');
+    if (backToGridBtn) backToGridBtn.classList.remove('hidden');
+    if (backToHomeLink) backToHomeLink.classList.add('hidden');
+    // chatContainer left hidden by default
 
     chatMessagesList.innerHTML = '';
     chatOptionsContainer.innerHTML = '';
@@ -2027,6 +2094,16 @@ const initApp = () => {
   }
 
   function showAIQuery(text, options, callback) {
+    // Update step dots in the dynamic mockup header
+    const d1 = document.getElementById('step-dot-1');
+    const d2 = document.getElementById('step-dot-2');
+    const d3 = document.getElementById('step-dot-3');
+    if (d1 && d2 && d3) {
+      d1.className = 'w-4 h-1 rounded-full ' + (currentChatStep >= 1 ? 'bg-[#FF007F]' : 'bg-slate-200');
+      d2.className = 'w-4 h-1 rounded-full ' + (currentChatStep >= 2 ? 'bg-[#FF007F]' : 'bg-slate-200');
+      d3.className = 'w-4 h-1 rounded-full ' + (currentChatStep >= 3 ? 'bg-[#FF007F]' : 'bg-slate-200');
+    }
+
     // Add typing indicator
     const typingIndicator = document.createElement('div');
     typingIndicator.className = 'flex items-start gap-2 mb-4 animate-fade-in-up';
@@ -2099,6 +2176,7 @@ const initApp = () => {
   }
 
   function scrollChatBottom() {
+    if (!chatContainer) return;
     const scrollContainer = chatContainer.closest('.overflow-y-auto');
     if (scrollContainer) {
       scrollContainer.scrollTop = scrollContainer.scrollHeight;
@@ -2106,6 +2184,7 @@ const initApp = () => {
   }
 
   function handleStep1Response(value) {
+    currentChatStep = 2;
     setTimeout(() => {
       showAIQuery("Tò mò xíu nè, cậu muốn bỏ ống heo tổng cộng bao nhiêu tiền cho mục tiêu này dạ? Mình đã phân tích biến động giá cả để ước tính bạn cần tích lũy khoảng 42 triệu đồng trước tháng 12/2027, bạn có thể tham khảo 💰✨", [
         { text: "42.000.000 VND (Đã tính trượt giá)", value: "42000000" },
@@ -2116,6 +2195,7 @@ const initApp = () => {
   }
 
   function handleStep2Response(value) {
+    currentChatStep = 3;
     setTimeout(() => {
       showAIQuery("Tớ thấy ví của cậu khá là 'healthy và balanced' luôn á! Cậu muốn tớ dùng siêu trí tuệ AI vẽ riêng cho cậu một lộ trình thông minh, hay cậu muốn tự tay điều chỉnh theo ý mình nè? Trả lời tớ nha! 🦾🦖", [
         { text: "Cake Đề xuất thông minh (Khuyên dùng)", value: "ai_proposal" },
@@ -2156,6 +2236,13 @@ const initApp = () => {
   const startBlueprintBtn = document.getElementById('start-blueprint-btn');
   if (startBlueprintBtn) {
     startBlueprintBtn.addEventListener('click', () => {
+      isGoalActive = true;
+      activeGoalText = selectedGoalText;
+      activeGoalEmoji = selectedGoalEmoji;
+      
+      // Update details card UI elements
+      syncGoalProgressUI();
+      
       navigateTo('dashboard-screen');
     });
   }
@@ -2356,6 +2443,58 @@ const initApp = () => {
 
 
 
+
+  // ================= DYNAMIC GOAL FLOW CONTROL =================
+  let isGoalActive = true; // Set true by default to show progress screen instantly
+  let activeGoalText = "Du lịch Nhật Bản";
+  let activeGoalEmoji = "🇯🇵";
+  let activeGoalDeadline = "06/2028";
+  let activeGoalAmount = 42000000;
+
+  window.handleGoalProgressClick = function() {
+    openGoalSelectionView();
+  };
+
+  window.resetActiveGoal = function() {
+    isGoalActive = false;
+    openGoalSelectionView();
+  };
+
+  // Update progress details card with the currently selected goal metadata
+  window.syncGoalProgressUI = function() {
+    const goalLabel = document.getElementById('progress-goal-name');
+    const deadlineLabel = document.getElementById('progress-deadline-label');
+    const ratioLabel = document.getElementById('progress-ratio-label');
+    
+    if (goalLabel) goalLabel.innerText = activeGoalEmoji + " " + activeGoalText;
+    if (deadlineLabel) deadlineLabel.innerText = activeGoalDeadline;
+    
+    // Update GATO level range slider max values based on goals
+    updateGatoLevel(0);
+  };
+
+
+  // ================= FLOATING CHAT WIDGET TOGGLE =================
+  window.toggleChatWidget = function() {
+    const chat = document.getElementById('chat-container');
+    const tooltip = document.getElementById('chat-bubble-tooltip');
+    const btn = document.getElementById('toggle-chat-bubble-btn');
+    if (!chat) return;
+
+    if (chat.classList.contains('hidden')) {
+      chat.classList.remove('hidden');
+      if (tooltip) tooltip.innerText = "Thu nhỏ chat ✕";
+      
+      // Smooth scroll to chat container
+      setTimeout(() => {
+        chat.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 100);
+    } else {
+      chat.classList.add('hidden');
+      if (tooltip) tooltip.innerText = "Hỏi trợ lý GATO 💬";
+    }
+  };
+
   // ================= GOAL PROGRESS VIEW HANDLERS =================
   window.openGoalProgress = function() {
     const journey = document.getElementById('gato-journey-view');
@@ -2487,23 +2626,22 @@ const initApp = () => {
     if (selection) selection.classList.add('hidden');
   };
 
-  // Override resetToGoalGrid to also close and return to GATO journey
-  const originalResetGrid = window.resetToGoalGrid;
+  // Override resetToGoalGrid to go back from combined progress screen to Goal Grid
   window.resetToGoalGrid = function() {
-    const grid = document.getElementById('goal-grid');
-    const heading = document.getElementById('discovery-heading');
-    const backBtn = document.getElementById('back-to-grid-btn');
-    const backLink = document.getElementById('back-to-home-link');
-    const chat = document.getElementById('chat-container');
-    
-    if (grid) grid.classList.remove('hidden');
-    if (heading) heading.classList.remove('hidden');
-    if (backBtn) backBtn.classList.add('hidden');
-    if (backLink) backLink.classList.remove('hidden');
-    if (chat) chat.classList.add('hidden');
+    // Hide progress view
+    closeGoalProgress();
 
-    // Go back one more level to GATO journey
-    closeGoalSelectionView();
+    // Show selection grid view
+    const selection = document.getElementById('goal-selection-view');
+    if (selection) selection.classList.remove('hidden');
+
+    // Reset Header view back to Grid Title
+    const chatHeaderInfo = document.getElementById('chat-header-info');
+    const chatGridTitle = document.getElementById('chat-grid-title');
+    if (chatHeaderInfo && chatGridTitle) {
+      chatHeaderInfo.classList.add('hidden');
+      chatGridTitle.classList.remove('hidden');
+    }
   };
 
   // ================= VOICE RECOGNITION SIMULATION =================
