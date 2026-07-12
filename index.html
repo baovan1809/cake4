@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cake Savings - AI Companion | Cake by VPBank</title>
+  <!-- Global Error Logger to catch and display JS issues on screen -->
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      const errDiv = document.createElement('div');
+      errDiv.style.position = 'fixed';
+      errDiv.style.top = '0';
+      errDiv.style.left = '0';
+      errDiv.style.width = '100%';
+      errDiv.style.backgroundColor = '#fecaca';
+      errDiv.style.color = '#b91c1c';
+      errDiv.style.padding = '10px';
+      errDiv.style.zIndex = '99999';
+      errDiv.style.fontFamily = 'monospace';
+      errDiv.style.fontSize = '12px';
+      errDiv.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+      errDiv.innerHTML = '<strong>JS Error:</strong> ' + message + ' <br>File: ' + source.split("/").pop() + ' Line: ' + lineno;
+      document.body.appendChild(errDiv);
+      return false;
+    };
+  </script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom CSS -->
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --cake-pink: #FF007F;
+  --cake-pink-hover: #E0006F;
+  --cake-pink-light: #FFEBF4;
+  --cake-blue: #00F0FF;
+  --cake-blue-dark: #0077F5;
+  --cake-purple: #7000FF;
+}
+
+body {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  background-color: #030712;
+  color: #1e293b;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.35), 0 0 5px rgba(255, 0, 127, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 0, 127, 0.65), 0 0 10px rgba(255, 0, 127, 0.35);
+  }
+}
+
+@keyframes bounceSoft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes floatClouds {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-float {
+  animation: float 4.5s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s infinite;
+}
+
+.animate-bounce-soft {
+  animation: bounceSoft 2s ease-in-out infinite;
+}
+
+/* Gradients */
+.bg-cake-pink {
+  background-color: var(--cake-pink);
+}
+
+.bg-cake-gradient {
+  background: linear-gradient(135deg, #FF007F 0%, #7000FF 100%);
+}
+
+.bg-cake-soft-gradient {
+  background: linear-gradient(135deg, #FFF0F6 0%, #F3F0FF 100%);
+}
+
+.bg-cake-home-header {
+  background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 40%, #F8FAFC 85%, #FFFFFF 100%);
+}
+
+.bg-pastel-pink-blue {
+  background: linear-gradient(135deg, #FFF5F7 0%, #F0F9FF 100%);
+}
+
+.bg-pastel-pink-purple {
+  background: linear-gradient(135deg, #FFF0F6 0%, #F3E8FF 100%);
+}
+
+.bg-pastel-cyan-blue {
+  background: linear-gradient(135deg, #ECFEFF 0%, #EFF6FF 100%);
+}
+
+.border-gradient-cake {
+  border: 2.5px solid transparent;
+  background-image: linear-gradient(white, white), linear-gradient(135deg, #FF007F 0%, #00F0FF 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* Shadows */
+.shadow-cake {
+  box-shadow: 0 10px 25px -5px rgba(255, 0, 127, 0.08), 0 8px 10px -6px rgba(255, 0, 127, 0.04);
+}
+
+.shadow-cake-lg {
+  box-shadow: 0 20px 35px -5px rgba(112, 0, 255, 0.1), 0 12px 16px -8px rgba(255, 0, 127, 0.06);
+}
+
+.shadow-cake-sm {
+  box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+}
+
+/* Device Mockup Layout */
+.device-mockup {
+  position: relative;
+  width: 340px;
+  height: 680px;
+  background: #1e293b;
+  border-radius: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 3px 2px rgba(255,255,255,0.1);
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border: 4px solid #334155;
+}
+
+.device-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.device-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 22px;
+  background: #1e293b;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  z-index: 50;
+}
+
+.device-notch::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background: #0f172a;
+  border-radius: 10px;
+}
+
+.device-notch::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: 18px;
+  width: 6px;
+  height: 6px;
+  background: #0f172a;
+  border-radius: 50%;
+}
+
+.device-status-bar {
+  height: 32px;
+  padding: 0 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 11px;
+  font-weight: 600;
+  color: #1e293b;
+  z-index: 45;
+  background: transparent;
+  pointer-events: none;
+}
+
+.device-status-bar.text-white {
+  color: #ffffff;
+}
+
+.device-home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: #000000;
+  border-radius: 10px;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.device-home-indicator.bg-white {
+  background: #ffffff;
+}
+
+.bottom-nav-spacer {
+  padding-bottom: 24px;
+}
+
+/* Screen transition behavior */
+.screen-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none !important;
+  flex-direction: column;
+}
+
+.app-screen.active {
+  display: flex !important;
+}
+
+/* Confetti canvas */
+#confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* Custom interactive triggers */
+.quick-action-btn:active {
+  transform: scale(0.92);
+}
+
+.active-nav-item {
+  color: var(--cake-pink) !important;
+}
+
+/* Cloud animation overlay */
+.bg-clouds {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40"><path d="M10 25 a10 10 0 0 1 18 -4 a15 15 0 0 1 28 -2 a12 12 0 0 1 20 8 z" fill="white" fill-opacity="0.25"/><path d="M120 30 a8 8 0 0 1 14 -3 a12 12 0 0 1 22 -2 a10 10 0 0 1 16 6 z" fill="white" fill-opacity="0.15"/></svg>');
+  background-repeat: repeat-x;
+  background-size: 200px 40px;
+  animation: floatClouds 30s linear infinite;
+}
+
+/* Live Timeline Active & Completed States */
+.timeline-step {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+}
+
+.timeline-step.active-step {
+  opacity: 1 !important;
+  background: rgba(255, 0, 127, 0.08);
+  border-color: rgba(255, 0, 127, 0.25);
+  box-shadow: 0 4px 20px rgba(255, 0, 127, 0.06);
+}
+
+.timeline-step.completed-step {
+  opacity: 0.8 !important;
+  background: rgba(16, 185, 129, 0.05);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+.timeline-step.completed-step .step-num {
+  background-color: #10b981 !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+.timeline-step.completed-step .step-status {
+  color: #10b981 !important;
+}
+
+/* Smartphone Mockup Upgrade */
+.device-mockup {
+  border: 6px solid #1a2436 !important;
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.device-mockup:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* Responsive mobile styles */
+@media (max-width: 640px) {
+  body {
+    background-color: #ffffff !important;
+  }
+  .desktop-glow {
+    display: none !important;
+  }
+  .device-mockup {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  .device-mockup:hover {
+    transform: none !important;
+  }
+  .device-screen {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  .device-notch {
+    display: none !important;
+  }
+  .device-status-bar {
+    display: none !important;
+  }
+  .device-home-indicator {
+    display: none !important;
+  }
+}
+
+/* Fallback styles if Tailwind CDN fails to load */
+#splash-screen, #login-screen {
+  background-color: #FF007F !important;
+  color: #ffffff !important;
+}
+
+#splash-screen *, #login-screen * {
+  color: #ffffff !important;
+}
+
+#splash-screen {
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 40px 24px !important;
+  box-sizing: border-box !important;
+}
+
+#splash-explore-btn {
+  background-color: #ffffff !important;
+  color: #FF007F !important;
+  border: none !important;
+  padding: 14px 20px !important;
+  border-radius: 16px !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.2s ease !important;
+}
+
+#splash-explore-btn * {
+  color: #FF007F !important;
+}
+
+#splash-explore-btn:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+#login-screen {
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+}
+
+#login-form {
+  margin: auto 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+#login-form label {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+}
+
+#login-form input {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  width: 100% !important;
+}
+
+#login-form button[type="submit"] {
+  background-color: #ffffff !important;
+  color: #FF007F !important;
+  border: none !important;
+  padding: 14px !important;
+  border-radius: 16px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  margin-top: 24px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+#login-form button[type="submit"] * {
+  color: #FF007F !important;
+}
+
+
+@keyframes scanLine {
+  0% { top: 0%; }
+  50% { top: 98%; }
+  100% { top: 0%; }
+}
+
+</style>
+  <!-- Tailwind Configuration for custom colors -->
+  <script>
+    if (typeof tailwind !== 'undefined') {
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              cakePink: '#FF007F',
+              cakePinkHover: '#E0006F',
+              cakePurple: '#7000FF',
+              cakeBlue: '#00F0FF',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#030712] text-slate-800 antialiased min-h-screen flex items-center justify-center p-0 m-0 relative overflow-hidden select-none">
+
+  <!-- Ambient background glow circles -->
+  <div class="desktop-glow absolute top-10 left-10 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl pointer-events-none animate-float" style="animation-duration: 15s;"></div>
+  <div class="desktop-glow absolute bottom-10 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none animate-float" style="animation-duration: 20s; animation-delay: 2s;"></div>
+
+  <!-- Centralized Smartphone Mockup -->
+  <div class="device-mockup">
+    <!-- Physical Device Notch (iPhone Pill) -->
+    <div class="device-notch"></div>
+    
+    <!-- Embedded Mobile Screen -->
+    <div class="device-screen">
+      <!-- Mock Mobile Status Bar -->
+      <div class="device-status-bar text-white">
+        <div id="status-bar-time" class="select-none">19:03</div>
+        <div class="flex items-center gap-1.5 select-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="17" width="3" height="3" rx="0.5"/><rect x="7" y="13" width="3" height="7" rx="0.5"/><rect x="12" y="9" width="3" height="11" rx="0.5"/><rect x="17" y="5" width="3" height="15" rx="0.5"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><path d="M12 19h.01"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="10" x="2" y="7" rx="2" ry="2"/><line x1="22" x2="22" y1="11" y2="13"/></svg>
+        </div>
+      </div>
+      
+      <!-- Screen Container (App Views inside) -->
+      <div class="screen-container">
+
+            <!-- ================= SCREEN 1: SPLASH SCREEN ================= -->
+            <div id="splash-screen" style="background-color: #FF007F !important;" class="app-screen active bg-[#FF007F] flex flex-col justify-between items-center py-10 px-6 cursor-pointer">
+              <!-- Top Spacer -->
+              <div></div>
+
+              <!-- Centered Logo Brand -->
+              <div class="text-center space-y-1 animate-scale-up">
+                <span class="text-white text-xs font-semibold uppercase tracking-[0.25em] opacity-90 block">NGÂN HÀNG SỐ</span>
+                <div class="text-white text-5xl font-extrabold tracking-tight flex items-center justify-center">
+                  <span>CAKE</span>
+                </div>
+                <span class="text-white text-[10px] font-bold tracking-[0.3em] uppercase opacity-75 block">by VPBank</span>
+              </div>
+
+              <!-- Bottom Elements (Brand Certifications) -->
+              <div class="w-full text-center space-y-5 animate-fade-in-up">
+                <!-- Khám phá ngay button -->
+                <button id="splash-explore-btn" onclick="navigateTo('login-screen'); event.stopPropagation();" class="w-full bg-white hover:bg-opacity-95 text-[#FF007F] py-3.5 rounded-2xl text-sm font-extrabold tracking-wide shadow-lg shadow-black/10 transition-all quick-action-btn flex items-center justify-center gap-2">
+                  <span>Khám phá ngay</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+
+                <p class="text-white/80 text-[10px] font-medium max-w-[85%] mx-auto leading-relaxed">
+                  Cake cam kết bảo mật mọi thông tin cá nhân của bạn.
+                </p>
+                
+                <!-- Security Logos representation -->
+                <div class="flex items-center justify-center gap-6 opacity-85">
+                  <div class="border border-white/40 rounded px-2 py-1 text-[8px] font-bold text-white tracking-wider bg-white/5 uppercase">
+                    PCI DSS
+                  </div>
+                  <div class="border border-white/40 rounded px-2 py-1 text-[8px] font-bold text-white tracking-wider bg-white/5 uppercase">
+                    FIDO ALLIANCE
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= SCREEN 2: LOGIN INPUT SCREEN ================= -->
+            <div id="login-screen" style="background-color: #FF007F !important;" class="app-screen bg-[#FF007F] flex flex-col justify-between py-6 px-6">
+              <!-- Header Logo -->
+              <div class="flex flex-col items-center mt-2">
+                <div class="text-white text-3xl font-extrabold tracking-tight">CAKE</div>
+                <span class="text-white text-[8px] font-bold tracking-[0.25em] uppercase opacity-75">by VPBank</span>
+              </div>
+
+              <!-- Login Form Area -->
+              <form id="login-form" class="space-y-4 my-auto">
+                <!-- Phone Input -->
+                <div class="space-y-1.5">
+                  <label class="text-[10px] font-bold text-white uppercase tracking-wider block opacity-90">SỐ ĐIỆN THOẠI</label>
+                  <div class="flex bg-white/10 border border-white/20 rounded-2xl p-3 items-center text-white focus-within:border-white focus-within:bg-white/15 transition-all">
+                    <span class="text-sm font-semibold pr-3 mr-3 border-r border-white/25 flex items-center gap-1">
+                      <span>🇻🇳</span> +84
+                    </span>
+                    <input type="tel" id="login-phone" placeholder="Nhập số điện thoại" class="bg-transparent border-none outline-none text-sm placeholder-white/50 w-full font-medium" value="0912345678" required>
+                  </div>
+                </div>
+
+                <!-- PIN Input -->
+                <div class="space-y-1.5">
+                  <label class="text-[10px] font-bold text-white uppercase tracking-wider block opacity-90">MÃ PIN BẢO MẬT</label>
+                  <div class="flex bg-white/10 border border-white/20 rounded-2xl p-3 items-center text-white focus-within:border-white focus-within:bg-white/15 transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock text-white/70 mr-3"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="login-pin" maxlength="6" placeholder="Nhập mã PIN" class="bg-transparent border-none outline-none text-sm placeholder-white/50 w-full font-medium tracking-widest" value="123456" required>
+                  </div>
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="w-full bg-white hover:bg-opacity-95 text-[#FF007F] py-3.5 rounded-2xl text-sm font-bold tracking-wide shadow-lg shadow-black/10 transition-all quick-action-btn mt-6 flex items-center justify-center gap-2">
+                  Đăng nhập
+                </button>
+
+                <div class="flex justify-between text-[11px] text-white/80 font-medium px-1 pt-2">
+                  <a href="#" class="hover:text-white transition-colors">Quên mã PIN?</a>
+                  <a href="#" class="hover:text-white transition-colors">Đổi số điện thoại</a>
+                </div>
+              </form>
+
+              <!-- Touch ID / Face ID simulation icon -->
+              <div class="flex flex-col items-center gap-2 mb-2">
+                <button type="button" onclick="navigateTo('home-screen')" class="w-12 h-12 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 flex items-center justify-center text-white transition-all quick-action-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M8 12a4 4 0 0 1 8 0"/><path d="M12 8v8"/></svg>
+                </button>
+                <span class="text-[9px] text-white/70 font-semibold tracking-wide uppercase">Đăng nhập nhanh sinh trắc học</span>
+              </div>
+            </div>
+
+            <!-- ================= SCREEN 3: INTEGRATED HOME SCREEN ================= -->
+            <div id="home-screen" style="background: linear-gradient(180deg, #BAE6FD 0%, #E0F2FE 40%, #F8FAFC 85%, #FFFFFF 100%) !important;" class="app-screen bg-cake-home-header bg-clouds">
+              
+              <!-- Screen content wrapper -->
+              <div class="flex-1 overflow-y-auto px-4.5 pb-24 pt-2">
+                
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-4">
+                  <!-- Cá nhân / Kinh doanh toggle -->
+                  <div class="flex bg-white/60 p-0.5 rounded-full shadow-sm border border-white/40">
+                    <span class="px-4 py-1.5 bg-[#FF007F] text-white text-xs font-bold rounded-full shadow-sm">Cá nhân</span>
+                    <span class="px-4 py-1.5 text-slate-500 text-xs font-bold hover:text-slate-800 transition-colors">Kinh doanh</span>
+                  </div>
+                  
+                  <!-- Icons on right -->
+                  <div class="flex items-center gap-2">
+                    <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-slate-600 shadow-sm border border-slate-100 quick-action-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </button>
+                    <button class="w-9 h-9 rounded-full bg-white flex items-center justify-center text-slate-600 shadow-sm border border-slate-100 relative quick-action-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bell"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+                      <span class="absolute top-2 right-2.5 w-1.5 h-1.5 rounded-full bg-[#FF007F]"></span>
+                    </button>
+                    <div onclick="navigateTo('login-screen'); showToast('Đăng xuất thành công! Hẹn gặp lại cậu nha! 🥰');" class="w-9 h-9 rounded-full bg-[#FF007F] text-white font-bold text-xs flex items-center justify-center shadow-md border-2 border-white select-none cursor-pointer hover:scale-105 active:scale-95 transition-transform" title="Đăng xuất">
+                      TH
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Promo Card: Thẻ Cake 2in1 đã sẵn sàng! -->
+                <div class="bg-gradient-to-r from-[#FF007F] via-[#d946ef] to-[#6366f1] rounded-3xl p-5 text-white mb-5 shadow-cake-lg flex justify-between items-center relative overflow-hidden border border-white/10">
+                  <div class="absolute -right-6 -top-6 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                  <div class="space-y-1.5 z-10">
+                    <span class="text-[8px] font-black text-pink-200 tracking-[0.2em] uppercase">THẺ CAKE 2IN1</span>
+                    <p class="text-sm font-black leading-snug">Thẻ Cake 2in1<br/>đã sẵn sàng!</p>
+                    <button class="px-4 py-1.5 bg-white text-[#FF007F] text-[10px] font-extrabold rounded-full mt-2 hover:scale-105 transition-transform shadow-md shadow-pink-900/20 quick-action-btn">Phát hành ngay</button>
+                  </div>
+                  <!-- Layered cards graphic -->
+                  <div class="relative w-16 h-20 shrink-0 select-none mr-2">
+                    <div class="absolute top-0 right-0 w-11 h-15 bg-gradient-to-br from-pink-400 to-[#FF007F] rounded-md shadow border border-white/20 transform rotate-12"></div>
+                    <div class="absolute top-1 right-3.5 w-11 h-15 bg-gradient-to-br from-cyan-400 to-indigo-500 rounded-md shadow border border-white/20 transform -rotate-12"></div>
+                  </div>
+                </div>
+
+                <!-- Account Cards (Side by Side) -->
+                <div class="grid grid-cols-2 gap-3 mb-4.5">
+                  <!-- Tài khoản chính -->
+                  <div class="bg-white rounded-3xl p-3.5 border-2 border-pink-100 shadow-cake relative overflow-hidden">
+                    <div class="flex justify-between items-center mb-1">
+                      <span class="text-[9px] text-slate-400 font-bold tracking-wider uppercase">TÀI KHOẢN CHÍNH</span>
+                      <button id="toggle-balance-btn" class="text-slate-400 hover:text-slate-600 p-0.5 rounded-full transition-colors">
+                        <!-- Eye icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                      </button>
+                    </div>
+                    <div class="flex items-baseline gap-0.5">
+                      <span id="balance-value" class="text-sm font-extrabold text-slate-800">**********</span>
+                      <span class="text-[10px] font-bold text-slate-500">đ</span>
+                    </div>
+                  </div>
+
+                  <!-- Khoản vay -->
+                  <div class="bg-white rounded-3xl p-3.5 border-2 border-sky-100 shadow-cake flex flex-col justify-between">
+                    <span class="text-[9px] text-slate-400 font-bold tracking-wider uppercase">KHOẢN VAY</span>
+                    <div class="flex items-center justify-between mt-1">
+                      <span class="text-xs font-bold text-[#0077F5]">Giải ngân siêu tốc</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" class="text-[#0077F5]"><path d="m9 18 6-6-6-6"/></svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AIgoal mate Intervention Widget -->
+                <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-4.5 border border-pink-100 shadow-cake relative overflow-hidden mb-5 animate-pulse-glow">
+                  <div class="absolute right-4 top-2 text-xs animate-float">✨</div>
+                  
+                  <div class="flex items-start gap-3">
+                    <!-- Cute pink mascot GoalMate avatar -->
+                    <div class="shrink-0 bg-white rounded-full p-0.5 border border-pink-100 shadow-sm overflow-hidden flex items-center justify-center w-12 h-12">
+                      <img src="mascot.png" class="w-10 h-10 object-contain animate-bounce-soft" alt="AIgoal mate">
+                    </div>
+
+                    <div class="space-y-3 flex-1">
+                      <div>
+                        <span class="text-[9px] font-extrabold text-[#FF007F] tracking-widest uppercase">AIgoal mate</span>
+                        <p class="text-slate-700 text-xs font-semibold leading-relaxed mt-0.5">
+                          "Ting ting! Cậu vừa nhận lương kìa! Hay là tụi mình bỏ ống heo <span class="text-[#FF007F] font-extrabold">2,8 triệu</span> cho mục tiêu Du lịch Nhật Bản luôn nha? Cực kỳ hợp lý luôn á! 🥰✈️"
+                        </p>
+                      </div>
+
+                      <button id="home-save-now-btn" class="w-full bg-[#FF007F] hover:bg-cakePinkHover text-white py-2 rounded-xl text-xs font-bold tracking-wide shadow transition-all quick-action-btn flex items-center justify-center gap-1.5">
+                        <span>Save Now</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quick Actions Grid -->
+                <div class="space-y-3 mb-5">
+                  <h3 class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">DỊCH VỤ CỦA CAKE</h3>
+                  
+                  <div class="grid grid-cols-4 gap-y-4 gap-x-2">
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-rose-50 text-[#FF007F] flex items-center justify-center shadow-cake-sm border border-rose-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Chuyển tiền</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center shadow-cake-sm border border-amber-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Vé sự kiện</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center shadow-cake-sm border border-purple-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M20 12v8H4v-8"/><path d="m12 2 10 10-10 10L2 12Z"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Nhận tiền quốc tế</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-indigo-50 text-indigo-500 flex items-center justify-center shadow-cake-sm border border-indigo-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Mời bạn bè</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-slate-100 text-slate-800 flex items-center justify-center shadow-cake-sm border border-slate-200 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Apple Pay</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-sky-50 text-sky-500 flex items-center justify-center shadow-cake-sm border border-sky-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 1 0 10 10"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Ưu đãi</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-teal-50 text-teal-500 flex items-center justify-center shadow-cake-sm border border-teal-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="12" x="3" y="6" rx="2"/><path d="M3 10h18"/><path d="M7 15h.01"/><path d="M11 15h.01"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Hoá đơn đã lưu</span>
+                    </div>
+
+                    <div class="flex flex-col items-center">
+                      <button class="w-11 h-11 rounded-2xl bg-green-50 text-green-500 flex items-center justify-center shadow-cake-sm border border-green-100 quick-action-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+                      </button>
+                      <span class="text-[9px] text-slate-500 font-semibold mt-1.5 text-center leading-tight">Nạp điện thoại</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Quỹ chung Section -->
+                <div class="space-y-3 mb-6">
+                  <h3 class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">QUỸ CHUNG</h3>
+                  <div class="bg-gradient-to-br from-[#1e1b4b] to-[#0f172a] rounded-3xl p-6 text-white shadow-cake-lg relative overflow-hidden flex justify-between items-center border border-indigo-500/10">
+                    <!-- Ambient Glow -->
+                    <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl pointer-events-none"></div>
+                    <div class="absolute -left-10 -top-10 w-24 h-24 bg-indigo-500/20 rounded-full blur-xl pointer-events-none"></div>
+                    
+                    <div class="space-y-2 z-10">
+                      <span class="text-[9px] text-indigo-300 font-black uppercase tracking-[0.2em]">QUỸ NHÓM</span>
+                      <h4 class="text-base font-bold tracking-wide text-white">Quỹ thiếu nhi 2026</h4>
+                      <div class="flex items-center gap-1.5 mt-1">
+                        <span class="text-lg font-extrabold tracking-wide text-[#00F0FF]">*********</span>
+                        <span class="text-xs text-indigo-300 font-semibold">đ</span>
+                      </div>
+                    </div>
+                    <div class="w-14 h-14 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-3xl z-10 shadow-lg shadow-black/20 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
+                      👶
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Fixed Bottom Nav (inside Home) -->
+              <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-3xl border border-slate-100 flex justify-between items-center px-4.5 py-2.5 shadow-lg z-30 bottom-nav-spacer">
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-[#FF007F] font-extrabold" data-screen="home-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">VAY NHANH</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="advance-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ỨNG TRƯỚC</span>
+                </a>
+                <div class="relative -top-6">
+                  <button class="w-13 h-13 rounded-full bg-cake-gradient text-white flex items-center justify-center shadow-lg shadow-pink-500/30 border-4 border-white transition-all quick-action-btn" onclick="openQRScanner()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
+                  </button>
+                </div>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400 relative" data-screen="discovery-screen">
+                  <span class="absolute -top-3.5 bg-cake-gradient text-[6px] font-black text-white px-1.5 py-0.5 rounded-full border border-white tracking-wide scale-90">ĐẾN 8.9%</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">TIẾT KIỆM</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="invest-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ĐẦU TƯ</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- ================= SCREEN 4: GOAL DISCOVERY ================= -->
+            <div id="discovery-screen" style="background-color: #ffffff !important;" class="app-screen bg-white">
+              
+              <!-- Header -->
+              <div class="px-5 pt-3 pb-2 flex items-center justify-between border-b border-slate-100 bg-white">
+                <button id="back-to-grid-btn" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button id="back-to-home-link" onclick="navigateTo('home-screen')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">MỤC TIÊU MƠ ƯỚC</h2>
+                <div class="w-8"></div>
+              </div>
+
+              <!-- Viewport -->
+              <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4">
+                <!-- Heading -->
+                <div id="discovery-heading" class="mb-5">
+                  <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-tight">Bạn đang hướng tới điều gì?</h1>
+                  <p class="text-xs text-slate-500 font-medium mt-1">Chọn một ước mơ để AIgoal mate thiết kế kế hoạch.</p>
+                </div>
+
+                <!-- Dream Options Grid -->
+                <div id="goal-grid" class="grid grid-cols-2 gap-4">
+                  <div class="goal-card bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Du lịch Nhật" data-goal-emoji="🇯🇵">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🇯🇵</div>
+                    <div>
+                      <span class="text-[9px] font-bold text-pink-500 uppercase tracking-wider block">Du lịch</span>
+                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Du lịch Nhật</h4>
+                    </div>
+                  </div>
+
+                  <div class="goal-card bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Mua xe" data-goal-emoji="🚗">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🚗</div>
+                    <div>
+                      <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider block">Phương tiện</span>
+                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Mua xe</h4>
+                    </div>
+                  </div>
+
+                  <div class="goal-card bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Laptop mới" data-goal-emoji="💻">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">💻</div>
+                    <div>
+                      <span class="text-[9px] font-bold text-purple-500 uppercase tracking-wider block">Thiết bị</span>
+                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Laptop mới</h4>
+                    </div>
+                  </div>
+
+                  <div class="goal-card bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Học cao học" data-goal-emoji="🎓">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🎓</div>
+                    <div>
+                      <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-wider block">Phát triển</span>
+                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Học lên cao</h4>
+                    </div>
+                  </div>
+
+                  <div class="goal-card bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Đám cưới" data-goal-emoji="💍">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">💍</div>
+                    <div>
+                      <span class="text-[9px] font-bold text-amber-500 uppercase tracking-wider block">Gia đình</span>
+                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Đám cưới</h4>
+                    </div>
+                  </div>
+
+                  <div class="goal-card bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Mua căn hộ" data-goal-emoji="🏠">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🏠</div>
+                    <div>
+                      <span class="text-[9px] font-bold text-violet-500 uppercase tracking-wider block">Tài sản</span>
+                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Mua nhà</h4>
+                    </div>
+                  </div>
+
+                  <div class="goal-card bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-3xl col-span-2 p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-28" data-goal-text="Quỹ khẩn cấp" data-goal-emoji="❤️">
+                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">❤️</div>
+                    <div class="flex justify-between items-end w-full">
+                      <div>
+                        <span class="text-[9px] font-bold text-red-500 uppercase tracking-wider block">An tâm</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Quỹ khẩn cấp</h4>
+                      </div>
+                      <span class="text-[9px] text-slate-400 font-semibold mb-0.5">Dự phòng rủi ro tài chính</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Chat simulation (Init hidden) -->
+                <div id="chat-container" class="hidden space-y-4 pt-2">
+                  <div id="chat-messages" class="flex flex-col"></div>
+                  <div id="chat-options" class="flex flex-col gap-2 mt-4"></div>
+                </div>
+              </div>
+
+              <!-- Fixed Bottom Nav (Discovery) -->
+              <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-3xl border border-slate-100 flex justify-between items-center px-4.5 py-2.5 shadow-lg z-30 bottom-nav-spacer">
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="home-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">VAY NHANH</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="advance-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ỨNG TRƯỚC</span>
+                </a>
+                <div class="relative -top-6">
+                  <button class="w-13 h-13 rounded-full bg-cake-gradient text-white flex items-center justify-center shadow-lg shadow-pink-500/30 border-4 border-white transition-all quick-action-btn" onclick="openQRScanner()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
+                  </button>
+                </div>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-[#FF007F] font-extrabold relative" data-screen="discovery-screen">
+                  <span class="absolute -top-3.5 bg-cake-gradient text-[6px] font-black text-white px-1.5 py-0.5 rounded-full border border-white tracking-wide scale-90">ĐẾN 8.9%</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">TIẾT KIỆM</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="invest-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ĐẦU TƯ</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- ================= SCREEN 5: AI PERSONALIZED SAVING BLUEPRINT ================= -->
+            <div id="blueprint-screen" style="background-color: #f8fafc !important;" class="app-screen bg-slate-50">
+              
+              <!-- Header -->
+              <div class="px-5 pt-3 pb-2 flex items-center bg-white border-b border-slate-100">
+                <button onclick="navigateTo('discovery-screen')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">Kế Hoạch Đề Xuất</h2>
+                <div class="w-8"></div>
+              </div>
+
+              <!-- Content Area -->
+              <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4 space-y-5">
+                
+                <!-- Blueprint Summary Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-3xl p-5 text-white shadow-cake-lg relative overflow-hidden">
+                  <div class="absolute right-0 top-0 w-32 h-32 bg-pink-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                  
+                  <div class="flex justify-between items-start mb-4">
+                    <div>
+                      <span class="px-2.5 py-1 rounded-full bg-pink-500/20 text-[#FF007F] text-[9px] font-bold uppercase tracking-wider border border-pink-500/30">Lộ trình AI</span>
+                      <h3 id="bp-goal-name" class="text-lg font-bold mt-2 flex items-center gap-1.5">
+                        <span>🇯🇵</span> Du lịch Nhật
+                      </h3>
+                    </div>
+                    <div class="text-right">
+                      <p class="text-[9px] text-slate-400 font-bold uppercase">MỤC TIÊU TÍCH LŨY</p>
+                      <p class="text-base font-extrabold text-pink-400">42.000.000đ</p>
+                    </div>
+                  </div>
+                  
+                  <div class="grid grid-cols-2 gap-4 pt-3.5 border-t border-slate-800 text-xs">
+                    <div>
+                      <p class="text-slate-400 font-medium">Hạn chót</p>
+                      <p class="font-bold text-slate-200 mt-0.5">Tháng 06/2028</p>
+                    </div>
+                    <div>
+                      <p class="text-slate-400 font-medium">Lộ trình thiết kế</p>
+                      <p class="font-bold text-slate-200 mt-0.5">24 tháng</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Proposal Box -->
+                <div class="bg-white rounded-3xl border border-pink-100 p-5 shadow-cake space-y-3.5">
+                  <div class="flex items-center gap-2">
+                    <span class="text-sm">⚙️</span>
+                    <h4 class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">Cài đặt đề xuất tự động</h4>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-2">
+                    <div class="bg-pastel-pink-blue rounded-2xl p-2.5 text-center border border-pink-100/60">
+                      <span class="text-[8px] text-slate-500 font-bold block leading-tight">MỖI THÁNG</span>
+                      <strong class="text-xs font-black text-slate-800 block mt-1">2.800.000đ</strong>
+                    </div>
+                    <div class="bg-pastel-pink-purple rounded-2xl p-2.5 text-center border border-purple-100/60">
+                      <span class="text-[8px] text-slate-500 font-bold block leading-tight">NGÀY GỬI GÓP</span>
+                      <strong class="text-xs font-black text-[#FF007F] block mt-1">Ngày 03</strong>
+                    </div>
+                    <div class="bg-pastel-cyan-blue rounded-2xl p-2.5 text-center border border-cyan-100/60">
+                      <span class="text-[8px] text-slate-500 font-bold block leading-tight">XÁC SUẤT ĐẠT</span>
+                      <strong class="text-xs font-black text-emerald-600 block mt-1">97%</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Reasoning Bubble (AIgoal mate) -->
+                <div class="flex items-start gap-2.5">
+                  <!-- Avatar -->
+                  <div class="shrink-0 bg-white rounded-full p-0.5 border border-pink-100 shadow-sm overflow-hidden flex items-center justify-center w-10 h-10">
+                    <img src="mascot.png" class="w-8 h-8 object-contain animate-bounce-soft" alt="AIgoal mate">
+                  </div>
+                  
+                  <div class="bg-slate-100 text-slate-700 px-4 py-3.5 rounded-2xl rounded-tl-none text-xs leading-relaxed shadow-sm relative">
+                    <div class="absolute left-[-6px] top-3.5 w-0 h-0 border-t-[6px] border-t-transparent border-r-[6px] border-r-slate-100 border-b-[6px] border-b-transparent"></div>
+                    <p class="font-bold text-[#FF007F] mb-1">AIgoal mate:</p>
+                    "Mình đề xuất mức này vì sau khi phân tích 6 tháng giao dịch gần nhất, bạn vẫn còn khoảng <span class="font-bold text-slate-900">3,4 triệu dư mỗi tháng</span>. Mức tiết kiệm này giúp bạn đạt mục tiêu đúng hạn mà vẫn đảm bảo chi tiêu hằng ngày."
+                  </div>
+                </div>
+
+                <!-- Action Button -->
+                <button id="start-blueprint-btn" class="w-full bg-[#FF007F] hover:bg-cakePinkHover text-white py-3.5 rounded-2xl text-sm font-bold tracking-wide shadow-lg shadow-pink-500/20 hover:shadow-pink-500/35 transition-all quick-action-btn">
+                  Bắt đầu kế hoạch
+                </button>
+
+              </div>
+
+              <!-- Fixed Bottom Nav (Blueprint) -->
+              <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-3xl border border-slate-100 flex justify-between items-center px-4.5 py-2.5 shadow-lg z-30 bottom-nav-spacer">
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="home-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">VAY NHANH</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="advance-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ỨNG TRƯỚC</span>
+                </a>
+                <div class="relative -top-6">
+                  <button class="w-13 h-13 rounded-full bg-cake-gradient text-white flex items-center justify-center shadow-lg shadow-pink-500/30 border-4 border-white transition-all quick-action-btn" onclick="openQRScanner()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
+                  </button>
+                </div>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400 relative" data-screen="discovery-screen">
+                  <span class="absolute -top-3.5 bg-cake-gradient text-[6px] font-black text-white px-1.5 py-0.5 rounded-full border border-white tracking-wide scale-90">ĐẾN 8.9%</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">TIẾT KIỆM</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400 font-extrabold text-[#FF007F]" data-screen="invest-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ĐẦU TƯ</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- ================= SCREEN 6: GOAL PROGRESS & ADAPTIVE REPLANNING ================= -->
+            <div id="dashboard-screen" style="background-color: #f8fafc !important;" class="app-screen bg-slate-50">
+              
+              <!-- Header -->
+              <div class="px-5 pt-3 pb-2 flex items-center bg-white border-b border-slate-100">
+                <button onclick="navigateTo('blueprint-screen')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">Tiến Độ Tích Lũy</h2>
+                <div class="w-8"></div>
+              </div>
+
+              <!-- Main Content -->
+              <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4 space-y-4">
+                
+                <!-- Progress Card -->
+                <div class="bg-white rounded-3xl p-5 border border-slate-100 shadow-cake animate-fade-in-up">
+                  <div class="flex justify-between items-center mb-3">
+                    <span id="db-goal-name" class="text-sm font-extrabold text-slate-800 flex items-center gap-1.5">
+                      <span>🇯🇵</span> Du lịch Nhật Bản
+                    </span>
+                    <span id="dashboard-progress-text" class="text-sm font-extrabold text-[#FF007F]">72%</span>
+                  </div>
+
+                  <!-- Gradient Progress Bar -->
+                  <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden mb-3.5">
+                    <div id="dashboard-progress-fill" class="h-full bg-cake-gradient rounded-full transition-all duration-700" style="width: 72%"></div>
+                  </div>
+
+                  <!-- Stats Grid -->
+                  <div class="grid grid-cols-3 gap-2 text-center pt-3 border-t border-slate-100">
+                    <div>
+                      <span class="text-[8px] text-slate-400 font-bold block leading-tight uppercase">ĐÃ GỬI</span>
+                      <strong id="saved-amount-el" class="text-xs font-black text-slate-800 block mt-0.5">30.240.000đ</strong>
+                    </div>
+                    <div>
+                      <span class="text-[8px] text-slate-400 font-bold block leading-tight uppercase">CÒN LẠI</span>
+                      <strong class="text-xs font-black text-slate-800 block mt-0.5">11.760.000đ</strong>
+                    </div>
+                    <div>
+                      <span class="text-[8px] text-slate-400 font-bold block leading-tight uppercase">CHUỒI GỬI</span>
+                      <strong class="text-xs font-black text-[#FF007F] block mt-0.5">12 tháng</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AI Prediction Widget -->
+                <div class="bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-100/75 rounded-2xl p-4 shadow-cake-sm flex items-start gap-3 animate-fade-in-up" style="animation-delay: 0.1s">
+                  <div class="shrink-0 mt-0.5 bg-white rounded-full p-0.5 border border-sky-100 shadow-sm overflow-hidden flex items-center justify-center w-8 h-8">
+                    <img src="mascot.png" class="w-6 h-6 object-contain animate-bounce-soft" alt="AIgoal mate">
+                  </div>
+                  <p id="prediction-widget-text" class="text-slate-700 text-xs font-medium leading-relaxed">
+                    Với phong độ xịn xò này, cậu sẽ <strong class="text-[#FF007F] font-bold">hoàn thành sớm hơn tận 16 ngày</strong> so với kế hoạch ban đầu luôn á! Quá đỉnh! 🥳🔥
+                  </p>
+                </div>
+
+                <!-- Adaptive Replanning Modal (Simulated Active State) -->
+                <div id="replanning-modal" class="bg-gradient-to-br from-[#FFF5F7] to-[#F3F0FF] border-2 border-pink-100 rounded-3xl p-5 shadow-cake-lg relative overflow-hidden transition-all duration-300 animate-fade-in-up" style="animation-delay: 0.2s">
+                  <div class="absolute right-4 top-4 text-xs animate-float">🧠</div>
+                  
+                  <div class="flex items-start gap-3">
+                    <div class="shrink-0 bg-white rounded-full p-0.5 border border-pink-100 shadow-sm overflow-hidden flex items-center justify-center w-10 h-10">
+                      <img src="mascot.png" class="w-8 h-8 object-contain animate-bounce-soft" alt="AIgoal mate">
+                    </div>
+                    
+                    <div class="space-y-3 flex-grow">
+                      <div>
+                        <span class="text-[9px] font-bold text-[#FF007F] tracking-wide uppercase">AI Thích Ứng Lộ Trình</span>
+                        <p class="text-slate-700 text-xs font-semibold leading-relaxed mt-0.5">
+                          "Mình nhận thấy bạn có giao dịch chi trả đột xuất trong tháng này. Mình đã điều chỉnh kế hoạch: Nếu tiết kiệm <span class="text-[#FF007F] font-bold">2 triệu/tháng</span> trong 3 tháng tới, bạn vẫn hoàn thành mục tiêu, chỉ muộn hơn 20 ngày."
+                        </p>
+                      </div>
+
+                      <button id="accept-replanning-btn" class="w-full bg-[#FF007F] hover:bg-cakePinkHover text-white py-2.5 rounded-xl text-xs font-bold tracking-wide shadow-md transition-all quick-action-btn">
+                        Đồng ý cập nhật lộ trình mới
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Simulation Trigger -->
+                <button id="trigger-celebration-btn" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-2xl text-[10px] font-bold tracking-wider hover:text-white uppercase flex items-center justify-center gap-1.5 shadow-sm transition-colors mt-2">
+                  <span>Simulate 100% Completion (Màn 7)</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+              </div>
+
+              <!-- Fixed Bottom Nav (Dashboard) -->
+              <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-3xl border border-slate-100 flex justify-between items-center px-4.5 py-2.5 shadow-lg z-30 bottom-nav-spacer">
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="home-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">VAY NHANH</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="advance-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ỨNG TRƯỚC</span>
+                </a>
+                <div class="relative -top-6">
+                  <button class="w-13 h-13 rounded-full bg-cake-gradient text-white flex items-center justify-center shadow-lg shadow-pink-500/30 border-4 border-white transition-all quick-action-btn" onclick="openQRScanner()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
+                  </button>
+                </div>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-[#FF007F] font-extrabold relative" data-screen="dashboard-screen">
+                  <span class="absolute -top-3.5 bg-cake-gradient text-[6px] font-black text-white px-1.5 py-0.5 rounded-full border border-white tracking-wide scale-90">ĐẾN 8.9%</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">TIẾT KIỆM</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" data-screen="invest-screen">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ĐẦU TƯ</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- ================= SCREEN 7: GOAL CELEBRATION ================= -->
+            <div id="celebration-screen" style="background: linear-gradient(to bottom, #1e1b4b, #090514) !important;" class="app-screen bg-gradient-to-b from-[#1e1b4b] to-[#090514] text-white">
+              
+              <!-- Celebration Fireworks Canvas overlay -->
+              <canvas id="confetti-canvas"></canvas>
+
+              <div class="flex-1 flex flex-col justify-center items-center px-6 py-10 text-center space-y-6 z-10 relative overflow-y-auto">
+                <!-- Mascot celebration badge -->
+                <div id="cb-mascot-badge" class="w-32 h-32 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-6xl shadow-xl shadow-pink-500/20 border-4 border-indigo-400/40 relative animate-float">
+                  🇯🇵
+                  <span class="absolute -top-1 -right-1 text-2xl animate-bounce-soft">🎉</span>
+                  <span class="absolute -bottom-1 -left-1 text-2xl" style="animation-delay: 0.5s">✨</span>
+                </div>
+
+                <div class="space-y-2 animate-fade-in-up">
+                  <span class="text-[10px] font-black text-pink-400 uppercase tracking-widest block">MỤC TIÊU HOÀN THÀNH</span>
+                  <h1 class="text-xl font-extrabold tracking-tight leading-snug">
+                    Chúc mừng!<br/>Sau 14 tháng, bạn đã hoàn thành <span id="cb-goal-name" class="text-pink-400">Goal Nhật Bản</span>.
+                  </h1>
+                </div>
+
+                <!-- Recap Metrics Box -->
+                <div class="bg-indigo-950/70 border border-indigo-800/40 rounded-3xl p-5 w-full space-y-3 shadow-cake-lg animate-fade-in-up" style="animation-delay: 0.15s">
+                  <h4 class="text-[9px] font-bold text-slate-400 uppercase tracking-wider text-left border-b border-indigo-900 pb-2">Nhật ký tích lũy</h4>
+                  
+                  <div class="grid grid-cols-2 gap-3 pt-1 text-left">
+                    <div class="bg-indigo-900/30 rounded-xl p-2.5">
+                      <span class="text-[8px] text-slate-400 block font-bold">TỔNG TÍCH LŨY</span>
+                      <strong class="text-sm font-bold text-pink-400 mt-0.5 block">42.000.000đ</strong>
+                    </div>
+                    <div class="bg-indigo-900/30 rounded-xl p-2.5">
+                      <span class="text-[8px] text-slate-400 block font-bold">SỐ LẦN GỬI</span>
+                      <strong class="text-sm font-bold text-slate-200 mt-0.5 block">14 lần</strong>
+                    </div>
+                    <div class="bg-indigo-900/30 rounded-xl p-2.5">
+                      <span class="text-[8px] text-slate-400 block font-bold">CHUỖI LIÊN TIẾP</span>
+                      <strong class="text-sm font-bold text-emerald-400 mt-0.5 block">14 tháng</strong>
+                    </div>
+                    <div class="bg-indigo-900/30 rounded-xl p-2.5">
+                      <span class="text-[8px] text-slate-400 block font-bold">VỀ ĐÍCH SỚM</span>
+                      <strong class="text-sm font-bold text-sky-400 mt-0.5 block">16 ngày</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-4 w-full animate-fade-in-up" style="animation-delay: 0.3s">
+                  <p class="text-xs text-slate-300 font-semibold">Bạn có muốn bắt đầu Goal tiếp theo không?</p>
+                  
+                  <button id="start-next-goal-btn" class="w-full bg-[#FF007F] hover:bg-cakePinkHover text-white py-3.5 rounded-2xl text-sm font-bold tracking-wide shadow-lg shadow-pink-500/25 hover:shadow-pink-500/40 transition-all quick-action-btn flex items-center justify-center gap-2">
+                    <span>Lên kế hoạch mới</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="device-home-indicator bg-white"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+  <!-- Diagnostic Debug Panel (Visible outside the phone wrapper) -->
+  <div id="diag-panel" class="absolute bottom-2 right-2 bg-slate-900/90 text-emerald-400 p-4 rounded-xl font-mono text-[10px] z-[9999] max-w-xs border border-slate-800 space-y-1">
+    <div class="font-bold border-b border-slate-800 pb-1 text-slate-200">🔍 DIAGNOSTICS:</div>
+    <div id="diag-tw">Tailwind CDN: Loading...</div>
+    <div id="diag-js">JS app.js: Waiting...</div>
+    <div id="diag-splash">Splash Screen Classes: ...</div>
+    <div id="diag-splash-style">Splash Computed Style: ...</div>
+    <div id="diag-element">Visible Element at Center: ...</div>
+  </div>
+
+  <script>
+    // Local diagnostic script
+    window.addEventListener('load', function() {
+      // Check Tailwind
+      const twLoaded = typeof tailwind !== 'undefined';
+      document.getElementById('diag-tw').innerText = 'Tailwind CDN: ' + (twLoaded ? 'Loaded ✓' : 'FAILED ✗');
+      document.getElementById('diag-tw').className = twLoaded ? 'text-emerald-400' : 'text-rose-400';
+
+      // Check Splash Screen
+      const splash = document.getElementById('splash-screen');
+      if (splash) {
+        document.getElementById('diag-splash').innerText = 'Splash Classes: ' + splash.className;
+        const style = window.getComputedStyle(splash);
+        document.getElementById('diag-splash-style').innerText = 'Splash Style: display=' + style.display + ', opacity=' + style.opacity + ', bg=' + style.backgroundColor + ', height=' + style.height;
+      } else {
+        document.getElementById('diag-splash').innerText = 'Splash Element: NOT FOUND! ✗';
+        document.getElementById('diag-splash').className = 'text-rose-400';
+      }
+
+      // Check visible element at center of device-screen
+      const container = document.querySelector('.screen-container');
+      if (container) {
+        const rect = container.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const el = document.elementFromPoint(centerX, centerY);
+        if (el) {
+          document.getElementById('diag-element').innerText = 'Visible at Center: <' + el.tagName.toLowerCase() + '> id="' + el.id + '" class="' + el.className.split(' ').slice(0, 3).join(' ') + '..."';
+        } else {
+          document.getElementById('diag-element').innerText = 'Visible at Center: NONE ✗';
+        }
+      }
+    });
+  </script>
+
+  <script>
+const initApp = () => {
+  const diagJs = document.getElementById('diag-js');
+  if (diagJs) {
+    diagJs.innerText = 'JS app.js: Initialized successfully ✓';
+    diagJs.className = 'text-emerald-400';
+  }
+  
+  // ================= STATE MANAGEMENT =================
+  const screens = [
+    'splash-screen',
+    'login-screen',
+    'home-screen',
+    'discovery-screen',
+    'blueprint-screen',
+    'dashboard-screen',
+    'celebration-screen'
+  ];
+  let currentScreenIdx = 0;
+
+  // Selected Goal variables in-memory
+  let selectedGoalText = "Du lịch Nhật";
+  let selectedGoalEmoji = "🇯🇵";
+  let isBalanceMasked = true; // Match home_2.jpg reference default state
+
+  // ================= GENERAL HELPERS =================
+  
+  // Navigation Function
+  window.navigateTo = function(screenId) {
+    const targetIdx = screens.indexOf(screenId);
+    if (targetIdx === -1) return;
+
+    const currentScreenId = screens[currentScreenIdx];
+    const currentEl = document.getElementById(currentScreenId);
+    const targetEl = document.getElementById(screenId);
+
+    if (!currentEl || !targetEl) return;
+
+    // Remove active class from all screens
+    screens.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('active');
+      }
+    });
+
+    // Make target active
+    targetEl.classList.add('active');
+    currentScreenIdx = targetIdx;
+
+    // Synchronize bottom nav bars highlights across screens
+    syncBottomNavBars(screenId);
+
+    // Screen specific triggers
+    if (screenId === 'blueprint-screen') {
+      initBlueprintScreen();
+    } else if (screenId === 'dashboard-screen') {
+      initDashboardScreen();
+    } else if (screenId === 'celebration-screen') {
+      initCelebrationScreen();
+      setTimeout(triggerConfetti, 100);
+    }
+  };
+
+  // Sync bottom nav links highlights
+  function syncBottomNavBars(activeScreenId) {
+    const allNavItems = document.querySelectorAll('.bottom-nav-item');
+    allNavItems.forEach(item => {
+      const targetScreen = item.getAttribute('data-screen');
+      
+      // Treat savings-related screens as the "TIẾT KIỆM" flow
+      let isMatch = false;
+      if (targetScreen === 'discovery-screen' && 
+          ['discovery-screen', 'blueprint-screen', 'dashboard-screen'].includes(activeScreenId)) {
+        isMatch = true;
+      } else if (targetScreen === activeScreenId) {
+        isMatch = true;
+      }
+
+      if (isMatch) {
+        item.classList.add('text-[#FF007F]', 'font-extrabold');
+        item.classList.remove('text-slate-400');
+      } else {
+        item.classList.remove('text-[#FF007F]', 'font-extrabold');
+        item.classList.add('text-slate-400');
+      }
+    });
+  }
+
+  // Toast notifier
+  window.showToast = function(message) {
+    const toast = document.createElement('div');
+    toast.className = 'absolute top-12 left-1/2 -translate-x-1/2 bg-slate-950 text-white text-xs px-4 py-2.5 rounded-full shadow-lg z-50 flex items-center gap-2 animate-fade-in-up font-medium border border-slate-800';
+    toast.innerHTML = `
+      <span>🍰</span>
+      <span>${message}</span>
+    `;
+    const container = document.querySelector('.screen-container') || document.body;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add('opacity-0', '-translate-y-2');
+      setTimeout(() => {
+        toast.remove();
+      }, 300);
+    }, 2500);
+  };
+
+  // Bind all bottom nav clicks
+  const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+  bottomNavItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetScreen = item.getAttribute('data-screen');
+      if (targetScreen === 'advance-screen') {
+        showToast("Tính năng Ứng Trước đang được phát triển!");
+      } else if (targetScreen === 'invest-screen') {
+        showToast("Tính năng Đầu Tư đang được phát triển!");
+      } else if (targetScreen) {
+        navigateTo(targetScreen);
+      }
+    });
+  });
+
+  // ================= SCREEN 1: SPLASH SCREEN =================
+  const splashScreenEl = document.getElementById('splash-screen');
+  if (splashScreenEl) {
+    // Click anywhere to skip splash as fallback
+    splashScreenEl.addEventListener('click', () => {
+      if (currentScreenIdx === 0) {
+        navigateTo('login-screen');
+      }
+    });
+  }
+
+  // ================= SCREEN 2: LOGIN INPUT SCREEN =================
+  const loginForm = document.getElementById('login-form');
+  const loginPhone = document.getElementById('login-phone');
+  const loginPin = document.getElementById('login-pin');
+  
+  if (loginForm) {
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (loginPhone.value.trim() === "" || loginPin.value.trim() === "") {
+        showToast("Vui lòng nhập đầy đủ số điện thoại và mã PIN!");
+        return;
+      }
+      navigateTo('home-screen');
+    });
+  }
+
+  // ================= SCREEN 3: INTEGRATED HOME SCREEN =================
+  const toggleBalanceBtn = document.getElementById('toggle-balance-btn');
+  const balanceValue = document.getElementById('balance-value');
+  
+  if (toggleBalanceBtn && balanceValue) {
+    const updateBalanceUI = () => {
+      if (isBalanceMasked) {
+        balanceValue.innerText = "**********";
+        toggleBalanceBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.574 1 1 0 0 1 0 .7a10.735 10.735 0 0 1-2.905 4.144"/><path d="M10.49 10.49a3.003 3.003 0 0 0 4.02 4.02"/><path d="M2 2l22 22"/><path d="M3.51 9.57a10.744 10.744 0 0 0 1.34 3.73 1 1 0 0 0 0 .7 10.735 10.735 0 0 0 9.25 5.36 10.712 10.712 0 0 0 3.73-1.34"/></svg>
+        `;
+      } else {
+        balanceValue.innerText = "42.500.000";
+        toggleBalanceBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        `;
+      }
+    };
+
+    updateBalanceUI();
+
+    toggleBalanceBtn.addEventListener('click', () => {
+      isBalanceMasked = !isBalanceMasked;
+      updateBalanceUI();
+    });
+  }
+
+  // AI companion card CTA
+  const homeSaveNowBtn = document.getElementById('home-save-now-btn');
+  if (homeSaveNowBtn) {
+    homeSaveNowBtn.addEventListener('click', () => {
+      navigateTo('discovery-screen');
+    });
+  }
+
+  // ================= SCREEN 4: GOAL DISCOVERY & CHATBOT =================
+  const goalCards = document.querySelectorAll('.goal-card');
+  const goalGrid = document.getElementById('goal-grid');
+  const chatContainer = document.getElementById('chat-container');
+  const chatMessagesList = document.getElementById('chat-messages');
+  const chatOptionsContainer = document.getElementById('chat-options');
+  const discoveryHeading = document.getElementById('discovery-heading');
+  const backToGridBtn = document.getElementById('back-to-grid-btn');
+  const backToHomeLink = document.getElementById('back-to-home-link');
+
+  goalCards.forEach(card => {
+    card.addEventListener('click', () => {
+      selectedGoalText = card.getAttribute('data-goal-text');
+      selectedGoalEmoji = card.getAttribute('data-goal-emoji');
+      startGoalChat();
+    });
+  });
+
+  if (backToGridBtn) {
+    backToGridBtn.addEventListener('click', () => {
+      resetToGoalGrid();
+    });
+  }
+
+  function startGoalChat() {
+    goalGrid.classList.add('hidden');
+    discoveryHeading.classList.add('hidden');
+    backToGridBtn.classList.remove('hidden');
+    backToHomeLink.classList.add('hidden');
+    chatContainer.classList.remove('hidden');
+
+    chatMessagesList.innerHTML = '';
+    chatOptionsContainer.innerHTML = '';
+
+    showAIQuery(`Ui chao! Kế hoạch tích lũy <strong>${selectedGoalEmoji} ${selectedGoalText}</strong> xịn xò quá nè! Cậu dự tính khi nào tụi mình xuất phát hoặc hoàn thành mục tiêu này thế? Cho tớ biết để lên lịch nha! 🥰`, [
+      { text: "Tháng 06/2028 (Khuyên dùng)", value: "06/2028" },
+      { text: "Cuối năm sau (12/2027)", value: "12/2027" },
+      { text: "Tự nhập mốc khác", value: "custom" }
+    ], handleStep1Response);
+  }
+
+  function resetToGoalGrid() {
+    goalGrid.classList.remove('hidden');
+    discoveryHeading.classList.remove('hidden');
+    backToGridBtn.classList.add('hidden');
+    backToHomeLink.classList.remove('hidden');
+    chatContainer.classList.add('hidden');
+  }
+
+  function showAIQuery(text, options, callback) {
+    // Add typing indicator
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'flex items-start gap-2 mb-4 animate-fade-in-up';
+    typingIndicator.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center shrink-0 border border-pink-100 overflow-hidden">
+        <img src="mascot.png" class="w-7 h-7 object-contain" alt="AIgoal mate">
+      </div>
+      <div class="bg-slate-100 text-slate-700 px-4 py-2.5 rounded-2xl rounded-tl-none text-sm shadow-sm max-w-[80%]">
+        <div class="flex items-center gap-1">
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0s"></span>
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>
+        </div>
+      </div>
+    `;
+    chatMessagesList.appendChild(typingIndicator);
+    scrollChatBottom();
+
+    setTimeout(() => {
+      chatMessagesList.removeChild(typingIndicator);
+
+      const bubble = document.createElement('div');
+      bubble.className = 'flex items-start gap-2 mb-4 animate-fade-in-up';
+      bubble.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center shrink-0 border border-pink-100 overflow-hidden">
+          <img src="mascot.png" class="w-7 h-7 object-contain" alt="AIgoal mate">
+        </div>
+        <div class="bg-slate-100 text-slate-800 px-4 py-2.5 rounded-2xl rounded-tl-none text-sm shadow-sm max-w-[80%] leading-relaxed">
+          ${text}
+        </div>
+      `;
+      chatMessagesList.appendChild(bubble);
+      scrollChatBottom();
+
+      renderOptions(options, callback);
+    }, 1000);
+  }
+
+  function renderOptions(options, callback) {
+    chatOptionsContainer.innerHTML = '';
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'w-full text-left bg-white hover:bg-pink-50 border border-slate-200 hover:border-[#FF007F] text-slate-700 hover:text-[#FF007F] px-4 py-3 rounded-xl text-sm font-medium transition-all shadow-sm flex items-center justify-between group';
+      btn.innerHTML = `
+        <span>${opt.text}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right text-slate-400 group-hover:text-[#FF007F] transition-colors"><path d="m9 18 6-6-6-6"/></svg>
+      `;
+      btn.addEventListener('click', () => {
+        addUserMessage(opt.text);
+        chatOptionsContainer.innerHTML = '';
+        callback(opt.value);
+      });
+      chatOptionsContainer.appendChild(btn);
+    });
+  }
+
+  function addUserMessage(text) {
+    const bubble = document.createElement('div');
+    bubble.className = 'flex items-start justify-end gap-2 mb-4 animate-fade-in-up';
+    bubble.innerHTML = `
+      <div class="bg-[#FF007F] text-white px-4 py-2.5 rounded-2xl rounded-tr-none text-sm shadow-sm max-w-[85%] leading-relaxed">
+        ${text}
+      </div>
+      <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center shrink-0">
+        <span class="text-xs font-semibold text-slate-600">Me</span>
+      </div>
+    `;
+    chatMessagesList.appendChild(bubble);
+    scrollChatBottom();
+  }
+
+  function scrollChatBottom() {
+    const scrollContainer = chatContainer.closest('.overflow-y-auto');
+    if (scrollContainer) {
+      scrollContainer.scrollTop = scrollContainer.scrollHeight;
+    }
+  }
+
+  function handleStep1Response(value) {
+    setTimeout(() => {
+      showAIQuery("Tò mò xíu nè, cậu muốn bỏ ống heo tổng cộng bao nhiêu tiền cho mục tiêu này dạ? Tớ tính sẵn cả trượt giá rồi nè, cậu tham khảo thử nha! 💰✨", [
+        { text: "42.000.000 VND (Đã tính trượt giá)", value: "42000000" },
+        { text: "30.000.000 VND (Tiết kiệm tối giản)", value: "30000000" },
+        { text: "Nhập số tiền khác", value: "custom_amount" }
+      ], handleStep2Response);
+    }, 500);
+  }
+
+  function handleStep2Response(value) {
+    setTimeout(() => {
+      showAIQuery("Tớ thấy ví của cậu khá là 'healthy và balanced' luôn á! Cậu muốn tớ dùng siêu trí tuệ AI vẽ riêng cho cậu một lộ trình thông minh, hay cậu muốn tự tay điều chỉnh theo ý mình nè? Trả lời tớ nha! 🦾🦖", [
+        { text: "Cake Đề xuất thông minh (Khuyên dùng)", value: "ai_proposal" },
+        { text: "Tự điều chỉnh thủ công", value: "manual" }
+      ], handleStep3Response);
+    }, 500);
+  }
+
+  function handleStep3Response(value) {
+    setTimeout(() => {
+      const bubble = document.createElement('div');
+      bubble.className = 'flex items-start gap-2 mb-4 animate-fade-in-up';
+      bubble.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center border border-pink-100 shrink-0 overflow-hidden">
+          <img src="mascot.png" class="w-7 h-7 object-contain" alt="AIgoal mate">
+        </div>
+        <div class="bg-pastel-pink-purple border border-pink-100 text-slate-800 px-4 py-2.5 rounded-2xl rounded-tl-none text-sm shadow-sm max-w-[80%] leading-relaxed">
+          ✨ Chờ tớ 3 giây nha! Tớ đang lục tìm dữ liệu chi tiêu và 'vẽ' một Blueprint xịn mịn nhất quả đất cho cậu đây...
+        </div>
+      `;
+      chatMessagesList.appendChild(bubble);
+      scrollChatBottom();
+
+      setTimeout(() => {
+        navigateTo('blueprint-screen');
+      }, 1500);
+    }, 500);
+  }
+
+  // ================= SCREEN 5: AI SAVING BLUEPRINT =================
+  function initBlueprintScreen() {
+    const bpGoalName = document.getElementById('bp-goal-name');
+    if (bpGoalName) {
+      bpGoalName.innerHTML = `<span>${selectedGoalEmoji}</span> ${selectedGoalText}`;
+    }
+  }
+
+  const startBlueprintBtn = document.getElementById('start-blueprint-btn');
+  if (startBlueprintBtn) {
+    startBlueprintBtn.addEventListener('click', () => {
+      navigateTo('dashboard-screen');
+    });
+  }
+
+  // ================= SCREEN 6: GOAL PROGRESS & ADAPTIVE DASHBOARD =================
+  const acceptReplanningBtn = document.getElementById('accept-replanning-btn');
+  const replanningModal = document.getElementById('replanning-modal');
+  const dashboardProgressFill = document.getElementById('dashboard-progress-fill');
+  const dashboardProgressText = document.getElementById('dashboard-progress-text');
+  const savedAmountEl = document.getElementById('saved-amount-el');
+  const predictionWidgetText = document.getElementById('prediction-widget-text');
+
+  function initDashboardScreen() {
+    const dbGoalName = document.getElementById('db-goal-name');
+    if (dbGoalName) {
+      dbGoalName.innerHTML = `<span>${selectedGoalEmoji}</span> ${selectedGoalText}`;
+    }
+    
+    // Dynamic default metrics based on goal selected
+    if (selectedGoalText !== "Du lịch Nhật") {
+      if (savedAmountEl) savedAmountEl.innerText = "0đ";
+      if (dashboardProgressFill) dashboardProgressFill.style.width = "0%";
+      if (dashboardProgressText) dashboardProgressText.innerText = "0%";
+      if (replanningModal) replanningModal.style.display = 'none'; // Only show demo modal for Japan Trip
+    } else {
+      // Reset to original states in case re-opened
+      if (savedAmountEl) savedAmountEl.innerText = "30.240.000đ";
+      if (dashboardProgressFill) dashboardProgressFill.style.width = "72%";
+      if (dashboardProgressText) dashboardProgressText.innerText = "72%";
+      if (replanningModal) {
+        replanningModal.style.display = 'block';
+        replanningModal.classList.remove('scale-95', 'opacity-0');
+      }
+      if (acceptReplanningBtn) {
+        acceptReplanningBtn.innerText = "Đồng ý cập nhật lộ trình mới";
+        acceptReplanningBtn.disabled = false;
+        acceptReplanningBtn.className = "w-full bg-[#FF007F] hover:bg-cakePinkHover text-white py-2.5 rounded-xl text-xs font-bold tracking-wide shadow-md transition-all quick-action-btn";
+      }
+      if (predictionWidgetText) {
+        predictionWidgetText.innerHTML = `Với phong độ xịn xò này, cậu sẽ <strong class="text-[#FF007F] font-bold">hoàn thành sớm hơn tận 16 ngày</strong> so với kế hoạch ban đầu luôn á! Quá đỉnh! 🥳🔥`;
+      }
+    }
+  }
+
+  if (acceptReplanningBtn && replanningModal) {
+    acceptReplanningBtn.addEventListener('click', () => {
+      acceptReplanningBtn.innerText = "Đã cập nhật ✓";
+      acceptReplanningBtn.disabled = true;
+      acceptReplanningBtn.classList.remove('bg-[#FF007F]');
+      acceptReplanningBtn.classList.add('bg-emerald-500', 'text-white');
+
+      setTimeout(() => {
+        replanningModal.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+          replanningModal.style.display = 'none';
+        }, 300);
+
+        if (savedAmountEl) savedAmountEl.innerText = "32.240.000đ";
+        if (dashboardProgressFill) dashboardProgressFill.style.width = "77%";
+        if (dashboardProgressText) dashboardProgressText.innerText = "77%";
+        if (predictionWidgetText) {
+          predictionWidgetText.innerHTML = "🎯 Kế hoạch đã được tối ưu hóa theo dòng tiền thực tế mới của bạn.";
+        }
+
+        showToast("Đã kích hoạt lộ trình tiết kiệm thích ứng thành công!");
+      }, 1000);
+    });
+  }
+
+  // Developer trigger to celebrate
+  const triggerCelebrationBtn = document.getElementById('trigger-celebration-btn');
+  if (triggerCelebrationBtn) {
+    triggerCelebrationBtn.addEventListener('click', () => {
+      navigateTo('celebration-screen');
+    });
+  }
+
+  // ================= SCREEN 7: GOAL CELEBRATION =================
+  function initCelebrationScreen() {
+    const cbGoalName = document.getElementById('cb-goal-name');
+    if (cbGoalName) {
+      cbGoalName.innerText = `Goal ${selectedGoalText}`;
+    }
+    const cbMascotBadge = document.getElementById('cb-mascot-badge');
+    if (cbMascotBadge) {
+      cbMascotBadge.innerHTML = `
+        ${selectedGoalEmoji}
+        <span class="absolute -top-1 -right-1 text-2xl animate-bounce-soft">🎉</span>
+        <span class="absolute -bottom-1 -left-1 text-2xl" style="animation-delay: 0.5s">✨</span>
+      `;
+    }
+  }
+
+  const startNextGoalBtn = document.getElementById('start-next-goal-btn');
+  if (startNextGoalBtn) {
+    startNextGoalBtn.addEventListener('click', () => {
+      resetToGoalGrid();
+      navigateTo('discovery-screen');
+    });
+  }
+
+  // Confetti Particle Canvas
+  function triggerConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+
+    let particles = [];
+    const colors = ['#FF007F', '#7000FF', '#00F0FF', '#FFD700', '#10B981', '#F59E0B'];
+
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * -100 - 10,
+        r: Math.random() * 5 + 3,
+        w: Math.random() * 12 + 6,
+        h: Math.random() * 8 + 4,
+        d: Math.random() * canvas.height,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10 - 5,
+        tiltAngleIncremental: Math.random() * 0.05 + 0.02,
+        tiltAngle: Math.random() * Math.PI,
+        speedY: Math.random() * 3 + 2,
+        speedX: Math.random() * 2 - 1
+      });
+    }
+
+    let animationId;
+    let startTime = Date.now();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let active = false;
+
+      particles.forEach((p) => {
+        p.tiltAngle += p.tiltAngleIncremental;
+        p.y += p.speedY;
+        p.x += p.speedX + Math.sin(p.tiltAngle) * 0.5;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+
+        if (p.y < canvas.height) {
+          active = true;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.tiltAngle);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      });
+
+      if (active && (Date.now() - startTime < 4000)) {
+        animationId = requestAnimationFrame(draw);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        cancelAnimationFrame(animationId);
+      }
+    }
+    draw();
+  }
+
+  // ================= QR SCANNER FUNCTIONS =================
+  let webcamStream = null;
+
+  window.openQRScanner = function() {
+    const modal = document.getElementById('qr-scanner-modal');
+    const video = document.getElementById('webcam-preview');
+    const placeholder = document.getElementById('scanner-placeholder');
+    if (!modal) return;
+
+    modal.classList.remove('hidden');
+
+    // Attempt to start real camera preview
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(stream => {
+          webcamStream = stream;
+          if (video) {
+            video.srcObject = stream;
+            video.classList.remove('hidden');
+          }
+          if (placeholder) {
+            placeholder.classList.add('hidden');
+          }
+        })
+        .catch(err => {
+          console.warn("Camera access denied or unavailable: ", err);
+          // Keep placeholder and run mock scan line animation only
+          if (video) video.classList.add('hidden');
+          if (placeholder) placeholder.classList.remove('hidden');
+        });
+    }
+  };
+
+  window.closeQRScanner = function() {
+    const modal = document.getElementById('qr-scanner-modal');
+    const video = document.getElementById('webcam-preview');
+    if (modal) modal.classList.add('hidden');
+
+    // Stop camera stream
+    if (webcamStream) {
+      webcamStream.getTracks().forEach(track => track.stop());
+      webcamStream = null;
+    }
+    if (video) {
+      video.srcObject = null;
+    }
+  };
+
+  // Simulated Web Audio API Beep sound
+  function playBeep() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime); // 1000Hz frequency
+      gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime); // Volume 15%
+
+      oscillator.start();
+      setTimeout(() => {
+        oscillator.stop();
+        audioCtx.close();
+      }, 150); // 150ms beep duration
+    } catch(e) {
+      console.warn("Audio Context beep failed", e);
+    }
+  }
+
+  window.triggerDemoQRScan = function() {
+    playBeep();
+    closeQRScanner();
+
+    // Show a beautiful, BeCar tone success notification
+    showToast("Quét mã QR Demo thành công! Trợ lý AI GoalMate chuyển tặng cậu 50k vào heo đất rồi nha! 🐷🌸");
+    
+    // Add 50,000 VND to balance if on Home or Dashboard
+    const savedAmount = document.getElementById('saved-amount-el');
+    if (savedAmount && savedAmount.innerText.includes("30.240.000")) {
+      savedAmount.innerText = "30.290.000đ";
+      // Update progress fill slightly if elements exist
+      const progressFill = document.getElementById('dashboard-progress-fill');
+      if (progressFill) progressFill.style.width = "73.2%";
+      const progressText = document.getElementById('dashboard-progress-text');
+      if (progressText) progressText.innerText = "73.2%";
+    }
+  };
+
+};
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+</script>
+</body>
+</html>
