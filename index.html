@@ -28,7 +28,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom CSS -->
   <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   --cake-pink: #FF007F;
@@ -39,8 +39,17 @@
   --cake-purple: #7000FF;
 }
 
+* {
+  font-family: 'Be Vietnam Pro', 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+
+.clip-triangle {
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
 body {
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
   background-color: #030712;
   color: #1e293b;
   margin: 0;
@@ -395,7 +404,12 @@ body {
 
 /* Responsive mobile styles */
 @media (max-width: 640px) {
-  body {
+  
+.clip-triangle {
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+
+body {
     background-color: #ffffff !important;
   }
   .desktop-glow {
@@ -706,7 +720,7 @@ body {
                 </div>
 
                 <!-- Account Cards (Side by Side) -->
-                <div class="grid grid-cols-2 gap-3 mb-4.5">
+                <div class="grid grid-cols-2 gap-3 mb-5">
                   <!-- Tài khoản chính -->
                   <div class="bg-white rounded-3xl p-3.5 border-2 border-pink-100 shadow-cake relative overflow-hidden">
                     <div class="flex justify-between items-center mb-1">
@@ -733,7 +747,7 @@ body {
                 </div>
 
                 <!-- AIgoal mate Intervention Widget -->
-                <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-4.5 border border-pink-100 shadow-cake relative overflow-hidden mb-5 animate-pulse-glow">
+                <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-3xl p-4.5 border border-pink-100 shadow-cake relative overflow-hidden mt-5 mb-5 animate-pulse-glow">
                   <div class="absolute right-4 top-2 text-xs animate-float">✨</div>
                   
                   <div class="flex items-start gap-3">
@@ -822,22 +836,21 @@ body {
                 </div>
 
                 <!-- Quỹ chung Section -->
-                <div class="space-y-3 mb-6">
+                <div class="space-y-2 mb-5">
                   <h3 class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">QUỸ CHUNG</h3>
-                  <div class="bg-gradient-to-br from-[#1e1b4b] to-[#0f172a] rounded-3xl p-6 text-white shadow-cake-lg relative overflow-hidden flex justify-between items-center border border-indigo-500/10">
+                  <div class="bg-gradient-to-br from-[#1e1b4b] to-[#0f172a] rounded-2xl p-4 text-white shadow-cake-lg relative overflow-hidden flex justify-between items-center border border-indigo-500/10">
                     <!-- Ambient Glow -->
-                    <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl pointer-events-none"></div>
-                    <div class="absolute -left-10 -top-10 w-24 h-24 bg-indigo-500/20 rounded-full blur-xl pointer-events-none"></div>
+                    <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-pink-500/15 rounded-full blur-xl pointer-events-none"></div>
                     
-                    <div class="space-y-2 z-10">
-                      <span class="text-[9px] text-indigo-300 font-black uppercase tracking-[0.2em]">QUỸ NHÓM</span>
-                      <h4 class="text-base font-bold tracking-wide text-white">Quỹ thiếu nhi 2026</h4>
-                      <div class="flex items-center gap-1.5 mt-1">
-                        <span class="text-lg font-extrabold tracking-wide text-[#00F0FF]">*********</span>
-                        <span class="text-xs text-indigo-300 font-semibold">đ</span>
+                    <div class="space-y-1 z-10">
+                      <span class="text-[8px] text-indigo-300 font-extrabold uppercase tracking-[0.15em]">QUỸ NHÓM</span>
+                      <h4 class="text-xs font-bold tracking-wide text-white">Quỹ thiếu nhi 2026</h4>
+                      <div class="flex items-baseline gap-1 mt-0.5">
+                        <span class="text-sm font-extrabold tracking-wide text-[#00F0FF]">*********</span>
+                        <span class="text-[9px] text-indigo-300 font-bold">đ</span>
                       </div>
                     </div>
-                    <div class="w-14 h-14 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-3xl z-10 shadow-lg shadow-black/20 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-xl z-10 shadow-md backdrop-blur-sm transform hover:scale-105 transition-transform duration-300">
                       👶
                     </div>
                   </div>
@@ -846,8 +859,8 @@ body {
               </div>
 
               <!-- Fixed Bottom Nav (inside Home) -->
-              <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-[28px] border border-slate-100 flex justify-between items-center px-4 py-3 shadow-lg z-30">
-                <a href="#" class="bottom-nav-item flex flex-col items-center text-[#FF007F] font-extrabold" onclick="navigateTo('home-screen'); return false;">
+                            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-[28px] border border-slate-100 grid grid-cols-5 items-center justify-items-center py-2.5 shadow-lg z-30">
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" onclick="navigateTo('home-screen'); return false;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                   <span class="text-[8px] mt-1 font-bold">VAY NHANH</span>
                 </a>
@@ -855,11 +868,21 @@ body {
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                   <span class="text-[8px] mt-1 font-bold">ỨNG TRƯỚC</span>
                 </a>
-                <div class="relative -top-5">
+                <div class="relative -top-5 flex justify-center w-full">
                   <button class="w-12 h-12 rounded-full bg-cake-gradient text-white flex items-center justify-center shadow-lg shadow-pink-500/35 border-[3px] border-white transition-all transform hover:scale-105 active:scale-95 quick-action-btn" onclick="openQRScanner()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
                   </button>
                 </div>
+                <a href="#" class="bottom-nav-item flex flex-col items-center relative text-[#FF007F] font-extrabold" onclick="navigateTo('discovery-screen'); return false;">
+                  <span class="absolute -top-4 bg-cake-gradient text-[5px] font-black text-white px-1.5 py-0.5 rounded-full border border-white tracking-widest shadow-sm animate-bounce-soft">ĐẾN 8.9%</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">TIẾT KIỆM</span>
+                </a>
+                <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" onclick="showToast('Tính năng đang phát triển nha cậu!'); return false;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                  <span class="text-[8px] mt-1 font-bold">ĐẦU TƯ</span>
+                </a>
+              </div>
                 <a href="#" class="bottom-nav-item flex flex-col items-center relative text-slate-400" onclick="navigateTo('discovery-screen'); return false;">
                   <span class="absolute -top-4.5 bg-cake-gradient text-[6px] font-black text-white px-2 py-0.5 rounded-full border border-white tracking-wider shadow-sm animate-bounce-soft">ĐẾN 8.9%</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
@@ -874,99 +897,530 @@ body {
             </div>
 
             <!-- ================= SCREEN 4: GOAL DISCOVERY ================= -->
-            <div id="discovery-screen" style="background-color: #ffffff !important;" class="app-screen bg-white">
+                        <!-- ================= SCREEN 4: GOAL DISCOVERY & GATO JOURNEY ================= -->
+            <div id="discovery-screen" style="background-color: #ffffff !important;" class="app-screen bg-white relative">
               
-              <!-- Header -->
-              <div class="px-5 pt-3 pb-2 flex items-center justify-between border-b border-slate-100 bg-white">
-                <button id="back-to-grid-btn" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                </button>
-                <button id="back-to-home-link" onclick="navigateTo('home-screen')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                </button>
-                <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">MỤC TIÊU MƠ ƯỚC</h2>
-                <div class="w-8"></div>
+              <!-- 4A: GATO JOURNEY VIEW (Default) -->
+              <div id="gato-journey-view" class="flex flex-col h-full w-full">
+                <!-- Header -->
+                <div class="px-5 pt-3 pb-2 flex items-center bg-white border-b border-slate-100">
+                  <button onclick="navigateTo('home-screen')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">Tiết kiệm cùng GATO</h2>
+                  <div class="w-8"></div>
+                </div>
+
+                <!-- Scrollable Journey Map -->
+                <div class="flex-1 overflow-y-auto px-5 pb-24 pt-3 space-y-4 relative scroll-smooth">
+                  <!-- Streak Alert -->
+                  <div class="bg-amber-50 border border-amber-200/60 rounded-2xl p-3 flex items-center gap-2 text-amber-800 text-[10px] font-bold shadow-sm">
+                    <span class="text-xs">🔥</span>
+                    <span>Chuỗi tiết kiệm 5 ngày liên tiếp — đừng để đứt nhé!</span>
+                  </div>
+
+                  <!-- Mascot Chat Bubble -->
+                  <div class="flex items-start gap-2.5 mt-2">
+                    <div class="w-8 h-8 rounded-full bg-pink-50 border border-pink-100 overflow-hidden flex items-center justify-center shrink-0">
+                      <img src="mascot.png" class="w-7 h-7 object-contain" alt="GATO Mascot">
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 text-slate-700 px-3.5 py-2.5 rounded-2xl rounded-tl-none text-[10px] font-bold leading-relaxed shadow-sm max-w-[80%]">
+                      Chọn một hành trình bên dưới để mình đồng hành cùng cậu nhé! 🎯
+                    </div>
+                  </div>
+
+                  <!-- Interactive Journey Path Graphic -->
+                  <div class="relative min-h-[380px] w-full flex flex-col justify-between py-6">
+                    <!-- SVG Curved Dotted Line -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M140 20 C180 80, 50 120, 70 200 C90 280, 220 280, 140 360" stroke="#fbcfe8" stroke-width="3" stroke-dasharray="6 6" stroke-linecap="round"/>
+                    </svg>
+
+                    <!-- STEP 1: Chi tiêu tháng này (Red circle, top center) -->
+                    <div class="relative z-10 flex flex-col items-center self-center -mt-2 transform hover:scale-105 transition-transform duration-300">
+                      <button onclick="openSpendingManager()" class="w-13 h-13 rounded-full bg-rose-500 text-white flex items-center justify-center shadow-lg shadow-rose-500/30 border-4 border-white quick-action-btn">
+                        <!-- Book icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+                      </button>
+                      <span class="mt-2 bg-white px-3 py-1 rounded-xl shadow-cake-sm border border-slate-100 text-[8px] font-black text-slate-800 text-center leading-tight uppercase tracking-wider">Chi tiêu<br/>tháng này</span>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center self-start ml-2 -mt-4 transform hover:scale-105 transition-transform duration-300">
+                      <button onclick="openGoalProgress()" class="w-13 h-13 rounded-full bg-[#7000FF] text-white flex items-center justify-center shadow-lg shadow-indigo-500/30 border-4 border-white animate-pulse-glow quick-action-btn">
+                        <!-- Target/Bullseye icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                      </button>
+                      <span class="mt-2 bg-white px-3 py-1 rounded-xl shadow-cake-sm border border-slate-100 text-[8px] font-black text-slate-800 text-center leading-tight uppercase tracking-wider">Mục tiêu<br/>tiết kiệm</span>
+                    </div>
+
+                    <div class="relative z-10 flex flex-col items-center self-end mr-2 -mt-4 transform hover:scale-105 transition-transform duration-300">
+                      <button onclick="showToast('Sổ tiết kiệm tích luỹ đang liên kết nha cậu! 📁')" class="w-13 h-13 rounded-full bg-amber-400 text-white flex items-center justify-center shadow-lg shadow-amber-500/30 border-4 border-white quick-action-btn">
+                        <!-- Folder icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+                      </button>
+                      <span class="mt-2 bg-white px-3 py-1 rounded-xl shadow-cake-sm border border-slate-100 text-[8px] font-black text-slate-800 text-center leading-tight uppercase tracking-wider">Sổ<br/>tiết kiệm</span>
+                    </div>
+
+                    <div class="relative z-10 flex justify-center mt-2 animate-bounce-soft">
+                      <div class="w-12 h-12 rounded-full bg-pink-50 border-2 border-pink-200 overflow-hidden flex items-center justify-center p-0.5 shadow-md shadow-pink-200/50">
+                        <img src="mascot.png" class="w-10 h-10 object-contain" alt="Gato Mascot">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Floating Voice Action Button (Bottom Right) -->
+                <div class="absolute bottom-20 right-5 z-40 flex items-center gap-2">
+                  <div class="bg-slate-900/90 text-white text-[9px] font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm pointer-events-none select-none">
+                    Nói để cập nhật
+                  </div>
+                  <button onclick="startVoiceRecognition()" class="w-13 h-13 rounded-full bg-gradient-to-tr from-[#FF007F] via-[#d946ef] to-[#7000FF] text-white flex items-center justify-center shadow-lg shadow-pink-500/40 border-4 border-white transition-all transform hover:scale-105 active:scale-95 quick-action-btn">
+                    <!-- Microphone icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                  </button>
+                </div>
               </div>
 
-              <!-- Viewport -->
-              <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4">
-                <!-- Heading -->
-                <div id="discovery-heading" class="mb-5">
-                  <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-tight">Bạn đang hướng tới điều gì?</h1>
-                  <p class="text-xs text-slate-500 font-medium mt-1">Chọn một ước mơ để AIgoal mate thiết kế kế hoạch.</p>
+              <!-- 4D: SPENDING MANAGER VIEW (Quản lý chi tiêu) -->
+              <div id="spending-manager-view" class="flex flex-col h-full w-full hidden select-none">
+                <!-- Header -->
+                <div class="px-5 pt-3 pb-2 flex items-center justify-between bg-white border-b border-slate-100">
+                  <button onclick="closeSpendingManager()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">Quản lý chi tiêu</h2>
+                  <div class="w-8"></div>
                 </div>
 
-                <!-- Dream Options Grid -->
-                <div id="goal-grid" class="grid grid-cols-2 gap-4">
-                  <div class="goal-card bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Du lịch Nhật" data-goal-emoji="🇯🇵">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🇯🇵</div>
+                <!-- Scrollable Content -->
+                <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4 space-y-5">
+                  <!-- Summary Card -->
+                  <div class="flex justify-between items-end border-b border-slate-100 pb-3">
                     <div>
-                      <span class="text-[9px] font-bold text-pink-500 uppercase tracking-wider block">Du lịch</span>
-                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Du lịch Nhật</h4>
+                      <span class="text-[9px] text-slate-400 font-bold tracking-wider block uppercase">TỔNG CHI TIÊU THÁNG NÀY</span>
+                      <h3 class="text-2xl font-black text-slate-900 mt-1">10.032.155đ</h3>
+                      <p class="text-[9px] text-emerald-500 font-bold mt-0.5 flex items-center gap-1">
+                        <span>📉</span> Giảm 9.293.852đ so với tháng trước ⓘ
+                      </p>
                     </div>
+                    <button class="bg-slate-50 border border-slate-200/60 rounded-xl px-3 py-1.5 text-[9px] font-extrabold text-slate-600 flex items-center gap-1.5 shadow-sm">
+                      <span>📅 Tháng này</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
                   </div>
 
-                  <div class="goal-card bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Mua xe" data-goal-emoji="🚗">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🚗</div>
-                    <div>
-                      <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider block">Phương tiện</span>
-                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Mua xe</h4>
-                    </div>
-                  </div>
-
-                  <div class="goal-card bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Laptop mới" data-goal-emoji="💻">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">💻</div>
-                    <div>
-                      <span class="text-[9px] font-bold text-purple-500 uppercase tracking-wider block">Thiết bị</span>
-                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Laptop mới</h4>
-                    </div>
-                  </div>
-
-                  <div class="goal-card bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Học cao học" data-goal-emoji="🎓">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🎓</div>
-                    <div>
-                      <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-wider block">Phát triển</span>
-                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Học lên cao</h4>
-                    </div>
-                  </div>
-
-                  <div class="goal-card bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Đám cưới" data-goal-emoji="💍">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">💍</div>
-                    <div>
-                      <span class="text-[9px] font-bold text-amber-500 uppercase tracking-wider block">Gia đình</span>
-                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Đám cưới</h4>
-                    </div>
-                  </div>
-
-                  <div class="goal-card bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Mua căn hộ" data-goal-emoji="🏠">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🏠</div>
-                    <div>
-                      <span class="text-[9px] font-bold text-violet-500 uppercase tracking-wider block">Tài sản</span>
-                      <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Mua nhà</h4>
-                    </div>
-                  </div>
-
-                  <div class="goal-card bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-3xl col-span-2 p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-28" data-goal-text="Quỹ khẩn cấp" data-goal-emoji="❤️">
-                    <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">❤️</div>
-                    <div class="flex justify-between items-end w-full">
-                      <div>
-                        <span class="text-[9px] font-bold text-red-500 uppercase tracking-wider block">An tâm</span>
-                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Quỹ khẩn cấp</h4>
+                  <!-- Doughnut Chart Container -->
+                  <div class="flex flex-col items-center py-2 relative">
+                    <!-- SVG Doughnut Chart -->
+                    <div class="relative w-36 h-36 flex items-center justify-center">
+                      <svg width="140" height="140" viewBox="0 0 36 36" class="transform -rotate-90">
+                        <!-- Circumference is exactly 100 -->
+                        <!-- Purple 44% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#6366f1" stroke-width="4.2" stroke-dasharray="44 56" stroke-dashoffset="0"></circle>
+                        <!-- Blue 15% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#3b82f6" stroke-width="4.2" stroke-dasharray="15 85" stroke-dashoffset="-44"></circle>
+                        <!-- Sky Blue 14% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#06b6d4" stroke-width="4.2" stroke-dasharray="14 86" stroke-dashoffset="-59"></circle>
+                        <!-- Yellow/Orange 8% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#f59e0b" stroke-width="4.2" stroke-dasharray="8 92" stroke-dashoffset="-73"></circle>
+                        <!-- Light Pink 7% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#f472b6" stroke-width="4.2" stroke-dasharray="7 93" stroke-dashoffset="-81"></circle>
+                        <!-- Red/Pink 5% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#f43f5e" stroke-width="4.2" stroke-dasharray="5 95" stroke-dashoffset="-88"></circle>
+                        <!-- Grey 7% -->
+                        <circle cx="18" cy="18" r="15.915" fill="transparent" stroke="#cbd5e1" stroke-width="4.2" stroke-dasharray="7 93" stroke-dashoffset="-93"></circle>
+                      </svg>
+                      <!-- Text inside Doughnut -->
+                      <div class="absolute flex flex-col items-center text-center">
+                        <span class="text-[8px] text-slate-400 font-extrabold uppercase tracking-widest leading-none">Chi nhiều</span>
+                        <span class="text-xs font-black text-indigo-600 mt-1 leading-none">Nhà cửa</span>
+                        <span class="text-[8px] text-slate-500 font-bold mt-0.5 leading-none">44%</span>
                       </div>
-                      <span class="text-[9px] text-slate-400 font-semibold mb-0.5">Dự phòng rủi ro tài chính</span>
+                    </div>
+
+                    <!-- Labeled percentages floating absolute to match the design reference -->
+                    <span class="absolute top-12 right-2 text-[9px] font-black text-indigo-500/80">▲ 44%</span>
+                    <span class="absolute bottom-3 right-10 text-[9px] font-black text-sky-500/80">■ 15%</span>
+                    <span class="absolute bottom-5 left-10 text-[9px] font-black text-amber-500/80">● 8%</span>
+                    <span class="absolute top-14 left-2 text-[9px] font-black text-rose-500/80">✿ 5%</span>
+                    <span class="absolute top-2 left-12 text-[9px] font-black text-pink-400/80">♥ 7%</span>
+                    <span class="absolute top-2 right-12 text-[9px] font-black text-slate-400/80">◆ 7%</span>
+                  </div>
+
+                  <!-- Tabs Section -->
+                  <div class="flex border-b border-slate-100 pb-1 text-center font-bold text-xs select-none">
+                    <button class="flex-1 pb-2 border-b-2 border-[#FF007F] text-[#FF007F]">Danh mục cha</button>
+                    <button class="flex-1 pb-2 text-slate-400 hover:text-slate-600" onclick="showToast('Xem danh mục con nha cậu!')">Danh mục con</button>
+                  </div>
+
+                  <div class="space-y-3.5">
+                    <!-- Nhà cửa 44% -->
+                    <div class="flex items-center justify-between text-xs">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-indigo-50 flex items-center justify-center text-lg shadow-sm border border-indigo-100/50">🏠</div>
+                        <div>
+                          <h4 class="font-bold text-slate-800">Nhà cửa</h4>
+                          <span class="text-[8px] text-slate-400 font-bold block">44% tổng chi</span>
+                        </div>
+                      </div>
+                      <span class="font-black text-slate-900">4.423.000đ</span>
+                    </div>
+
+                    <!-- Học tập 15% -->
+                    <div class="flex items-center justify-between text-xs">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center text-lg shadow-sm border border-blue-100/50">📘</div>
+                        <div>
+                          <h4 class="font-bold text-slate-800">Học tập</h4>
+                          <span class="text-[8px] text-slate-400 font-bold block">15% tổng chi</span>
+                        </div>
+                      </div>
+                      <span class="font-black text-slate-900">1.500.000đ</span>
+                    </div>
+
+                    <!-- Chợ, siêu thị 14% -->
+                    <div class="flex items-center justify-between text-xs">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-cyan-50 flex items-center justify-center text-lg shadow-sm border border-cyan-100/50">🛒</div>
+                        <div>
+                          <h4 class="font-bold text-slate-800">Chợ, siêu thị</h4>
+                          <span class="text-[8px] text-slate-400 font-bold block">14% tổng chi</span>
+                        </div>
+                      </div>
+                      <span class="font-black text-slate-900">1.366.404đ</span>
+                    </div>
+
+                    <!-- Ăn uống 8% -->
+                    <div class="flex items-center justify-between text-xs">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-rose-50 flex items-center justify-center text-lg shadow-sm border border-rose-100/50">🍜</div>
+                        <div>
+                          <h4 class="font-bold text-slate-800">Ăn uống</h4>
+                          <span class="text-[8px] text-slate-400 font-bold block">8% tổng chi</span>
+                        </div>
+                      </div>
+                      <span class="font-black text-slate-900">798.000đ</span>
+                    </div>
+
+                    <!-- Di chuyển 7% -->
+                    <div class="flex items-center justify-between text-xs">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center text-lg shadow-sm border border-slate-200/50">🚗</div>
+                        <div>
+                          <h4 class="font-bold text-slate-800">Di chuyển</h4>
+                          <span class="text-[8px] text-slate-400 font-bold block">7% tổng chi</span>
+                        </div>
+                      </div>
+                      <span class="font-black text-slate-900">745.717đ</span>
+                    </div>
+
+                    <!-- Giải trí 7% -->
+                    <div class="flex items-center justify-between text-xs">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-amber-50 flex items-center justify-center text-lg shadow-sm border border-amber-100/50">🎮</div>
+                        <div>
+                          <h4 class="font-bold text-slate-800">Giải trí</h4>
+                          <span class="text-[8px] text-slate-400 font-bold block">7% tổng chi</span>
+                        </div>
+                      </div>
+                      <span class="font-black text-slate-900">500.000đ</span>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <!-- Chat simulation (Init hidden) -->
-                <div id="chat-container" class="hidden space-y-4 pt-2">
-                  <div id="chat-messages" class="flex flex-col"></div>
-                  <div id="chat-options" class="flex flex-col gap-2 mt-4"></div>
+                            <!-- 4E: GOAL PROGRESS VIEW (Hành trình GATO lên đời) -->
+              <div id="goal-progress-view" class="flex flex-col h-full w-full hidden select-none">
+                <!-- Header -->
+                <div class="px-5 pt-3 pb-2 flex items-center justify-between bg-white border-b border-slate-100">
+                  <button onclick="closeGoalProgress()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">Mục tiêu tiết kiệm</h2>
+                  <div class="w-8"></div>
                 </div>
+
+                <!-- Content -->
+                <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4 space-y-4">
+                  <!-- Gato Level Up Card -->
+                  <div class="bg-white rounded-3xl border border-pink-100 p-5 shadow-cake flex flex-col items-center relative overflow-hidden">
+                    
+                    <!-- SVG Gato and Dress-up layers -->
+                    <div class="relative w-36 h-36 flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-100/80 mb-4 overflow-hidden shadow-inner">
+                      
+                      <!-- Floating Rolls-Royce for 100% -->
+                      <div id="gato-car" class="absolute left-1.5 top-12 transform -translate-x-12 opacity-0 transition-all duration-500 z-20">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16" fill="none">
+                          <rect x="2" y="4" width="20" height="8" rx="2" fill="#1e293b"/>
+                          <circle cx="6" cy="12" r="2.5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+                          <circle cx="18" cy="12" r="2.5" fill="#f8fafc" stroke="#475569" stroke-width="1.5"/>
+                          <path d="M4 4 L6 1 L18 1 L20 4 Z" fill="#475569"/>
+                        </svg>
+                      </div>
+
+                      <!-- Combined GATO Character and Outfit SVG -->
+                      <svg width="110" height="110" viewBox="0 0 100 100" class="z-10 select-none">
+                        <!-- Head / Cloud base -->
+                        <path d="M20 50 C20 35, 30 25, 50 25 C70 25, 80 35, 80 50 C80 65, 70 75, 50 75 C30 75, 20 65, 20 50 Z" fill="#fcf6f0" stroke="#f1ebe4" stroke-width="2"/>
+                        <!-- Fluffy cheeks details -->
+                        <path d="M15 50 C10 45, 10 55, 15 60" fill="none" stroke="#f1ebe4" stroke-width="2"/>
+                        <path d="M85 50 C90 45, 90 55, 85 60" fill="none" stroke="#f1ebe4" stroke-width="2"/>
+                        
+                        <!-- Eyes -->
+                        <circle cx="38" cy="48" r="5" fill="#1e293b"/>
+                        <circle cx="39" cy="47" r="1.5" fill="white"/>
+                        <circle cx="62" cy="48" r="5" fill="#1e293b"/>
+                        <circle cx="63" cy="47" r="1.5" fill="white"/>
+                        
+                        <!-- Blush -->
+                        <ellipse cx="32" cy="54" rx="4" ry="2" fill="#fda4af" opacity="0.6"/>
+                        <ellipse cx="68" cy="54" rx="4" ry="2" fill="#fda4af" opacity="0.6"/>
+                        
+                        <!-- Smiling Mouth -->
+                        <path d="M46 56 Q50 59 54 56" fill="none" stroke="#e11d48" stroke-width="2" stroke-linecap="round"/>
+
+                        <!-- GROUP 0%: Straw hat and checkered brown shirt -->
+                        <g id="outfit-0" style="transition: opacity 0.3s;">
+                          <!-- Messy wild hair -->
+                          <path d="M42 26 Q35 12 30 18 M50 25 Q52 8 58 10 M58 26 Q68 12 65 20 M30 35 Q18 30 22 40" stroke="#475569" stroke-width="2" stroke-linecap="round" fill="none"/>
+                          <!-- Straw hat sitting on head -->
+                          <path d="M23 27 L50 8 L77 27 Z" fill="#fed7aa" stroke="#ea580c" stroke-width="1.5"/>
+                          <path d="M50 8 L50 27" stroke="#ea580c" stroke-width="1" opacity="0.5"/>
+                          <!-- Bà ba shirt brown -->
+                          <path d="M26 73 C26 73 35 68 50 68 C65 68 74 73 74 73 L70 95 L30 95 Z" fill="#7c2d12"/>
+                          <!-- Yellow Patch -->
+                          <rect x="42" y="76" width="10" height="9" fill="#f59e0b" opacity="0.8" rx="1"/>
+                          <path d="M42 76 L52 85 M52 76 L42 85" stroke="#7c2d12" stroke-width="1"/>
+                        </g>
+
+                        <!-- GROUP 20%: Modern combed hair & Grey hoodie -->
+                        <g id="outfit-20" style="opacity: 0; transition: opacity 0.3s;">
+                          <!-- Combed modern black fringe hair -->
+                          <path d="M22 40 C22 24, 78 24, 78 40 C68 28, 32 28, 22 40 Z" fill="#1e293b"/>
+                          <path d="M35 30 L45 35 M55 30 L62 35" stroke="#0f172a" stroke-width="1.5"/>
+                          <!-- Grey hoodie body -->
+                          <path d="M26 73 C26 73 35 69 50 69 C65 69 74 73 74 73 L70 95 L30 95 Z" fill="#64748b"/>
+                          <circle cx="50" cy="70" r="3.5" fill="#94a3b8"/>
+                        </g>
+
+                        <!-- GROUP 50%: Spiky dyed hair, gold chain, earring, sunglasses, green sweater -->
+                        <g id="outfit-50" style="opacity: 0; transition: opacity 0.3s;">
+                          <!-- Spiky cool hot pink hair -->
+                          <path d="M20 40 L24 16 L32 22 L48 8 L64 22 L72 16 L76 40 L70 32 L50 20 L26 32 Z" fill="#ec4899"/>
+                          <!-- Gold Earring -->
+                          <circle cx="21" cy="56" r="3" fill="#fbbf24" stroke="#d97706" stroke-width="1"/>
+                          <!-- Green sweater -->
+                          <path d="M26 73 C26 73 35 69 50 69 C65 69 74 73 74 73 L70 95 L30 95 Z" fill="#0f766e"/>
+                          <!-- Gold necklace chain -->
+                          <path d="M38 69 C38 78, 62 78, 62 69" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+                          <!-- Sunglasses -->
+                          <rect x="26" y="44" width="48" height="9" rx="3.5" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+                          <path d="M26 48.5 L74 48.5" stroke="#475569" stroke-width="0.8"/>
+                        </g>
+
+                        <!-- GROUP 100%: Slicked-back glossy hair, crown, gold sunglasses, black tux vest -->
+                        <g id="outfit-100" style="opacity: 0; transition: opacity 0.3s;">
+                          <!-- High volume slicked-back gentleman hair -->
+                          <path d="M22 36 C18 10, 82 10, 78 36 C68 20, 32 20, 22 36 Z" fill="#020617"/>
+                          <!-- Golden crown sitting on hair -->
+                          <path d="M36 18 L41 8 L50 13 L59 8 L64 18 Z" fill="#facc15" stroke="#b45309" stroke-width="1.2"/>
+                          <circle cx="50" cy="13" r="1.5" fill="#ef4444"/>
+                          <!-- Black tux suit -->
+                          <path d="M26 73 C26 73 35 69 50 69 C65 69 74 73 74 73 L70 95 L30 95 Z" fill="#0f172a"/>
+                          <!-- White collar triangle cutout -->
+                          <polygon points="43,69 57,69 50,81" fill="#ffffff"/>
+                          <!-- Red bowtie -->
+                          <polygon points="46,70 54,70 50,75" fill="#ef4444"/>
+                          <!-- Golden sunglasses VIP -->
+                          <rect x="26" y="44" width="48" height="9" rx="3.5" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+                          <rect x="30" y="46" width="16" height="5" rx="1" fill="#fef08a" opacity="0.9"/>
+                          <rect x="54" y="46" width="16" height="5" rx="1" fill="#fef08a" opacity="0.9"/>
+                        </g>
+                      </svg>
+
+                    </div>
+
+                    <!-- Level Badge & Subtext -->
+                    <div class="text-center space-y-1 mb-4 w-full">
+                      <h3 id="progress-percentage-label" class="text-2xl font-black text-indigo-600">0%</h3>
+                      <p id="progress-desc-label" class="text-[10px] font-bold text-slate-700 leading-relaxed px-4 text-center min-h-[30px] flex items-center justify-center">
+                        "Mơ Nhật Bản nhưng ví đang ở... Nhật Tảo."
+                      </p>
+                    </div>
+
+                    <!-- Custom Interactive Range Slider -->
+                    <div class="w-full px-2 mb-2">
+                      <input type="range" id="gato-level-slider" min="0" max="100" value="0" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#FF007F]" oninput="updateGatoLevel(this.value)" />
+                      <div class="flex justify-between text-[8px] font-bold text-slate-400 mt-1 select-none">
+                        <span>0%</span>
+                        <span>20%</span>
+                        <span>50%</span>
+                        <span>100%</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Goal info details card -->
+                  <div class="bg-white rounded-3xl border border-slate-100 p-4.5 shadow-cake space-y-3 text-xs">
+                    <div class="flex justify-between items-center pb-2.5 border-b border-slate-100/60">
+                      <span class="text-slate-400 font-medium">Mục tiêu</span>
+                      <strong class="font-extrabold text-slate-800 text-right">Du lịch Nhật Bản</strong>
+                    </div>
+                    <div class="flex justify-between items-center pb-2.5 border-b border-slate-100/60">
+                      <span class="text-slate-400 font-medium">Đã đạt tháng này</span>
+                      <strong id="progress-ratio-label" class="font-extrabold text-[#FF007F] text-right">0đ / 2.800.000đ</strong>
+                    </div>
+                    <div class="flex justify-between items-center">
+                      <span class="text-slate-400 font-medium">Hạn hoàn thành</span>
+                      <strong class="font-extrabold text-slate-800 text-right">06/2028</strong>
+                    </div>
+                  </div>
+
+                  <!-- Instruction Bubble -->
+                  <div class="flex items-start gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-pink-50 border border-pink-100 overflow-hidden flex items-center justify-center shrink-0">
+                      <img src="mascot.png" class="w-7 h-7 object-contain" alt="GATO Mascot">
+                    </div>
+                    <div class="bg-slate-50 border border-slate-100 text-slate-600 px-3.5 py-2.5 rounded-2xl rounded-tl-none text-[9px] leading-relaxed shadow-sm flex-1">
+                      "Kéo thanh trượt để xem <strong>GATO 'lên đời'</strong> theo từng mốc cậu đạt được nha! 0% là bộ áo bà ba chân chất, 20% đã có áo thun xịn, còn 100% là auto sang chảnh kiểu Rolls-Royce luôn 😎"
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                            <!-- 4B: GOAL SELECTION GRID (Initially Hidden) -->
+              <div id="goal-selection-view" class="flex flex-col h-full w-full hidden">
+                <!-- Header -->
+                <div class="px-5 pt-3 pb-2 flex items-center justify-between border-b border-slate-100 bg-white">
+                  <button onclick="closeGoalSelectionView()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-600 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <h2 class="text-sm font-bold text-slate-800 mx-auto uppercase tracking-wider">MỤC TIÊU MƠ ƯỚC</h2>
+                  <div class="w-8"></div>
+                </div>
+
+                <!-- Viewport content -->
+                <div class="flex-1 overflow-y-auto px-5 pb-24 pt-4">
+                  <!-- Heading -->
+                  <div id="discovery-heading" class="mb-5">
+                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-tight">Bạn đang hướng tới điều gì?</h1>
+                    <p class="text-xs text-slate-500 font-medium mt-1">Chọn một ước mơ để AIgoal mate thiết kế kế hoạch.</p>
+                  </div>
+
+                  <!-- Dream Options Grid -->
+                  <div id="goal-grid" class="grid grid-cols-2 gap-4">
+                    <div class="goal-card bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Du lịch Nhật" data-goal-emoji="🇯🇵">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🇯🇵</div>
+                      <div>
+                        <span class="text-[9px] font-bold text-pink-500 uppercase tracking-wider block">Du lịch</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Du lịch Nhật</h4>
+                      </div>
+                    </div>
+
+                    <div class="goal-card bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Mua xe" data-goal-emoji="🚗">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🚗</div>
+                      <div>
+                        <span class="text-[9px] font-bold text-blue-500 uppercase tracking-wider block">Phương tiện</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Mua xe</h4>
+                      </div>
+                    </div>
+
+                    <div class="goal-card bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Laptop mới" data-goal-emoji="💻">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">💻</div>
+                      <div>
+                        <span class="text-[9px] font-bold text-purple-500 uppercase tracking-wider block">Thiết bị</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Laptop mới</h4>
+                      </div>
+                    </div>
+
+                    <div class="goal-card bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Học cao học" data-goal-emoji="🎓">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🎓</div>
+                      <div>
+                        <span class="text-[9px] font-bold text-emerald-500 uppercase tracking-wider block">Phát triển</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Học lên cao</h4>
+                      </div>
+                    </div>
+
+                    <div class="goal-card bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Đám cưới" data-goal-emoji="💍">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">💍</div>
+                      <div>
+                        <span class="text-[9px] font-bold text-amber-500 uppercase tracking-wider block">Gia đình</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Đám cưới</h4>
+                      </div>
+                    </div>
+
+                    <div class="goal-card bg-gradient-to-br from-violet-50 to-fuchsia-50 border border-violet-100 rounded-3xl p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-34" data-goal-text="Mua căn hộ" data-goal-emoji="🏠">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">🏠</div>
+                      <div>
+                        <span class="text-[9px] font-bold text-violet-500 uppercase tracking-wider block">Tài sản</span>
+                        <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Mua nhà</h4>
+                      </div>
+                    </div>
+
+                    <div class="goal-card bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-3xl col-span-2 p-4 shadow-cake-sm hover:shadow-cake cursor-pointer hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-28" data-goal-text="Quỹ khẩn cấp" data-goal-emoji="❤️">
+                      <div class="w-9 h-9 rounded-2xl bg-white flex items-center justify-center text-lg shadow-sm border border-slate-100">❤️</div>
+                      <div class="flex justify-between items-end w-full">
+                        <div>
+                          <span class="text-[9px] font-bold text-red-500 uppercase tracking-wider block">An tâm</span>
+                          <h4 class="text-xs font-bold text-slate-800 mt-0.5 leading-tight">Quỹ khẩn cấp</h4>
+                        </div>
+                        <span class="text-[9px] text-slate-400 font-semibold mb-0.5">Dự phòng rủi ro tài chính</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Chat simulation (Init hidden) -->
+                  <div id="chat-container" class="hidden flex flex-col h-[480px] justify-between pt-2">
+                    <!-- Scrollable message list -->
+                    <div id="chat-messages" class="flex-1 overflow-y-auto pr-1 flex flex-col space-y-3"></div>
+                    
+                    <!-- Option suggestion buttons -->
+                    <div id="chat-options" class="flex flex-col gap-2 mt-2"></div>
+                    
+                    <!-- Chat input box with voice icon and send plane -->
+                    <div id="chat-input-wrapper" class="flex items-center gap-2 mt-3 bg-slate-50 p-2 rounded-2xl border border-slate-100 select-none">
+                      <div class="flex-1 bg-white border border-slate-100 rounded-xl px-2.5 py-2 flex items-center gap-2 shadow-inner focus-within:border-pink-300 transition-all">
+                        <!-- Microphone voice icon -->
+                        <button type="button" onclick="startVoiceRecognition()" class="text-slate-400 hover:text-[#FF007F] transition-colors shrink-0">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mic"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                        </button>
+                        <input type="text" id="chat-text-input" placeholder="VD: 06/2028" class="bg-transparent border-none outline-none text-xs w-full text-slate-700 font-bold placeholder-slate-400" onkeydown="if(event.key === 'Enter') handleChatInputSubmit();" />
+                      </div>
+                      <!-- Send plane icon -->
+                      <button type="button" onclick="handleChatInputSubmit()" class="w-8.5 h-8.5 rounded-xl bg-cake-gradient text-white flex items-center justify-center shadow-md shadow-pink-500/20 active:scale-95 transition-all quick-action-btn shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-send-horizontal"><path d="m3 3 3 9-3 9 19-9Z"/><path d="M6 12h16"/></svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4C: Voice Recording Screen Overlay -->
+              <div id="voice-overlay-screen" class="absolute inset-0 bg-slate-950/85 backdrop-blur-md z-[9999] flex flex-col justify-between p-6 hidden select-none">
+                <!-- Header Spacer -->
+                <div></div>
+
+                <!-- Voice Recording Visualization -->
+                <div class="flex flex-col items-center space-y-6">
+                  <div class="relative w-28 h-28 rounded-full bg-gradient-to-tr from-[#FF007F] via-[#d946ef] to-[#7000FF] flex items-center justify-center border-4 border-white shadow-2xl shadow-pink-500/30 animate-pulse">
+                    <!-- Mic icon large -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                  </div>
+                  
+                  <div class="space-y-2 text-center">
+                    <h3 id="voice-status-title" class="text-white text-sm font-black uppercase tracking-widest animate-pulse">ĐANG NGHE GIỌNG CẬU...</h3>
+                    <p id="voice-status-subtitle" class="text-slate-400 text-[10px] font-bold">"Nói mốc thời gian hoặc số tiền cậu muốn tích luỹ nhé!"</p>
+                  </div>
+                </div>
+
+                <!-- Cancel Button -->
+                <button onclick="cancelVoiceRecognition()" class="w-full bg-white/10 hover:bg-white/15 text-white py-3 rounded-2xl text-[10px] font-black uppercase tracking-wider transition-all quick-action-btn mb-4">
+                  Hủy bỏ
+                </button>
               </div>
 
               <!-- Fixed Bottom Nav (Discovery) -->
-                            <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-[28px] border border-slate-100 flex justify-between items-center px-4 py-3 shadow-lg z-30">
+              <div class="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md rounded-[28px] border border-slate-100 grid grid-cols-5 items-center justify-items-center py-2.5 shadow-lg z-30">
                 <a href="#" class="bottom-nav-item flex flex-col items-center text-slate-400" onclick="navigateTo('home-screen'); return false;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
                   <span class="text-[8px] mt-1 font-bold">VAY NHANH</span>
@@ -975,13 +1429,13 @@ body {
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                   <span class="text-[8px] mt-1 font-bold">ỨNG TRƯỚC</span>
                 </a>
-                <div class="relative -top-5">
+                <div class="relative -top-5 flex justify-center w-full">
                   <button class="w-12 h-12 rounded-full bg-cake-gradient text-white flex items-center justify-center shadow-lg shadow-pink-500/35 border-[3px] border-white transition-all transform hover:scale-105 active:scale-95 quick-action-btn" onclick="openQRScanner()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>
                   </button>
                 </div>
                 <a href="#" class="bottom-nav-item flex flex-col items-center relative text-[#FF007F] font-extrabold" onclick="navigateTo('discovery-screen'); return false;">
-                  <span class="absolute -top-4.5 bg-cake-gradient text-[6px] font-black text-white px-2 py-0.5 rounded-full border border-white tracking-wider shadow-sm animate-bounce-soft">ĐẾN 8.9%</span>
+                  <span class="absolute -top-4 bg-cake-gradient text-[5px] font-black text-white px-1.5 py-0.5 rounded-full border border-white tracking-widest shadow-sm animate-bounce-soft">ĐẾN 8.9%</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-piggy-bank"><path d="M19 5c-1.5 0-2.8 1.4-3 2-2.5-1-5.4-1-8 0C7.8 6.4 6.5 5 5 5c-1.6 0-3 1.3-3 3 0 1.3 1 2.3 2.2 2.8-.2.7-.2 1.5-.2 2.2 0 4.4 3.6 8 8 8 2.3 0 4.4-1 6-2.5a7.9 7.9 0 0 0 6-5.5c.2-.7.2-1.5.2-2.2 1.2-.5 2.2-1.5 2.2-2.8 0-1.7-1.4-3-3-3z"/><path d="M14 11h.01"/><path d="M9.5 20v2"/><path d="M14.5 20v2"/><path d="M12 2.5V5"/></svg>
                   <span class="text-[8px] mt-1 font-bold">TIẾT KIỆM</span>
                 </a>
@@ -993,7 +1447,7 @@ body {
 
             </div>
 
-            <!-- ================= SCREEN 5: AI PERSONALIZED SAVING BLUEPRINT ================= -->
+                        <!-- ================= SCREEN 5: AI PERSONALIZED SAVING BLUEPRINT ================= -->
             <div id="blueprint-screen" style="background-color: #f8fafc !important;" class="app-screen bg-slate-50">
               
               <!-- Header -->
@@ -1045,9 +1499,9 @@ body {
                   </div>
 
                   <div class="grid grid-cols-3 gap-2">
-                    <div class="bg-pastel-pink-blue rounded-2xl p-2.5 text-center border border-pink-100/60">
+                    <div class="bg-pastel-pink-blue rounded-2xl p-2 px-1 text-center border border-pink-100/60 overflow-hidden">
                       <span class="text-[8px] text-slate-500 font-bold block leading-tight">MỖI THÁNG</span>
-                      <strong class="text-xs font-black text-slate-800 block mt-1">2.800.000đ</strong>
+                      <strong class="text-[10px] font-black text-slate-800 block mt-1 tracking-tighter">2.800.000đ</strong>
                     </div>
                     <div class="bg-pastel-pink-purple rounded-2xl p-2.5 text-center border border-purple-100/60">
                       <span class="text-[8px] text-slate-500 font-bold block leading-tight">NGÀY GỬI GÓP</span>
@@ -1191,7 +1645,7 @@ body {
 
                 <!-- Simulation Trigger -->
                 <button id="trigger-celebration-btn" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-2xl text-[10px] font-bold tracking-wider hover:text-white uppercase flex items-center justify-center gap-1.5 shadow-sm transition-colors mt-2">
-                  <span>Simulate 100% Completion (Màn 7)</span>
+                  <span>Simulate 100% Completion</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                 </button>
               </div>
@@ -1360,6 +1814,13 @@ const initApp = () => {
   
   // Navigation Function
   window.navigateTo = function(screenId) {
+    // Reset GATO journey view states if entering discovery screen
+    if (screenId === 'discovery-screen') {
+      const journey = document.getElementById('gato-journey-view');
+      const selection = document.getElementById('goal-selection-view');
+      if (journey) journey.classList.remove('hidden');
+      if (selection) selection.classList.add('hidden');
+    }
     const targetIdx = screens.indexOf(screenId);
     if (targetIdx === -1) return;
 
@@ -1646,7 +2107,7 @@ const initApp = () => {
 
   function handleStep1Response(value) {
     setTimeout(() => {
-      showAIQuery("Tò mò xíu nè, cậu muốn bỏ ống heo tổng cộng bao nhiêu tiền cho mục tiêu này dạ? Tớ tính sẵn cả trượt giá rồi nè, cậu tham khảo thử nha! 💰✨", [
+      showAIQuery("Tò mò xíu nè, cậu muốn bỏ ống heo tổng cộng bao nhiêu tiền cho mục tiêu này dạ? Mình đã phân tích biến động giá cả để ước tính bạn cần tích lũy khoảng 42 triệu đồng trước tháng 12/2027, bạn có thể tham khảo 💰✨", [
         { text: "42.000.000 VND (Đã tính trượt giá)", value: "42000000" },
         { text: "30.000.000 VND (Tiết kiệm tối giản)", value: "30000000" },
         { text: "Nhập số tiền khác", value: "custom_amount" }
@@ -1862,6 +2323,252 @@ const initApp = () => {
     }
     draw();
   }
+
+
+  // ================= CHAT INPUT SUBMIT HANDLER =================
+  window.handleChatInputSubmit = function() {
+    const input = document.getElementById('chat-text-input');
+    if (!input) return;
+    const text = input.value.trim();
+    if (text === "") return;
+
+    // Add user message to chat list
+    addUserMessage(text);
+    input.value = "";
+
+    // Determine current chat state and trigger transition
+    // Since this is a demo mockup, we will transition after a brief analysis delay
+    setTimeout(() => {
+      // Find the last message and response
+      if (selectedGoalText && chatMessagesList.children.length <= 3) {
+        // Step 1 response
+        handleStep1Response(text);
+      } else if (chatMessagesList.children.length <= 5) {
+        // Step 2 response
+        handleStep2Response(text);
+      } else {
+        // Step 3 response
+        handleStep3Response(text);
+      }
+    }, 800);
+  };
+
+
+
+
+  // ================= GOAL PROGRESS VIEW HANDLERS =================
+  window.openGoalProgress = function() {
+    const journey = document.getElementById('gato-journey-view');
+    const progress = document.getElementById('goal-progress-view');
+    if (journey) journey.classList.add('hidden');
+    if (progress) progress.classList.remove('hidden');
+    
+    // Reset to 0% value on open
+    const slider = document.getElementById('gato-level-slider');
+    if (slider) {
+      slider.value = 0;
+      updateGatoLevel(0);
+    }
+  };
+
+  window.closeGoalProgress = function() {
+    const journey = document.getElementById('gato-journey-view');
+    const progress = document.getElementById('goal-progress-view');
+    if (journey) journey.classList.remove('hidden');
+    if (progress) progress.classList.add('hidden');
+  };
+
+  window.updateGatoLevel = function(val) {
+    const value = parseInt(val);
+    const label = document.getElementById('progress-percentage-label');
+    const desc = document.getElementById('progress-desc-label');
+    const ratio = document.getElementById('progress-ratio-label');
+    
+    const o0 = document.getElementById('outfit-0');
+    const o20 = document.getElementById('outfit-20');
+    const o50 = document.getElementById('outfit-50');
+    const o100 = document.getElementById('outfit-100');
+    const car = document.getElementById('gato-car');
+
+    if (label) label.innerText = value + "%";
+
+    // Calculate dynamic savings amount to show progress updating automatically
+    const maxAmount = 2800000;
+    const currentAmount = Math.round((value / 100) * maxAmount);
+    if (ratio) {
+      ratio.innerText = currentAmount.toLocaleString('vi-VN') + "đ / " + maxAmount.toLocaleString('vi-VN') + "đ";
+    }
+
+    // Toggle outfits based on thresholds
+    if (value < 20) {
+      if (o0) o0.style.opacity = '1';
+      if (o20) o20.style.opacity = '0';
+      if (o50) o50.style.opacity = '0';
+      if (o100) o100.style.opacity = '0';
+      if (car) {
+        car.style.opacity = '0';
+        car.style.transform = 'translateX(-48px)';
+      }
+      if (desc) desc.innerHTML = '"Mơ Nhật Bản nhưng ví đang ở... Nhật Tảo. 💸"';
+    } 
+    else if (value >= 20 && value < 50) {
+      if (o0) o0.style.opacity = '0';
+      if (o20) o20.style.opacity = '1';
+      if (o50) o50.style.opacity = '0';
+      if (o100) o100.style.opacity = '0';
+      if (car) {
+        car.style.opacity = '0';
+        car.style.transform = 'translateX(-48px)';
+      }
+      if (desc) desc.innerHTML = '"Ít nhất giờ cũng đủ tiền... mua vali. 🧳"';
+    } 
+    else if (value >= 50 && value < 100) {
+      if (o0) o0.style.opacity = '0';
+      if (o20) o20.style.opacity = '0';
+      if (o50) o50.style.opacity = '1';
+      if (o100) o100.style.opacity = '0';
+      if (car) {
+        car.style.opacity = '0';
+        car.style.transform = 'translateX(-48px)';
+      }
+      if (desc) desc.innerHTML = '"Tokyo bắt đầu hiện lên trong tầm mắt. 🇯🇵✨"';
+    } 
+    else if (value === 100) {
+      if (o0) o0.style.opacity = '0';
+      if (o20) o20.style.opacity = '0';
+      if (o50) o50.style.opacity = '0';
+      if (o100) o100.style.opacity = '1';
+      if (car) {
+        car.style.opacity = '1';
+        car.style.transform = 'translateX(0px)';
+      }
+      if (desc) desc.innerHTML = '"Xin chào Nhật Bản. Gato tới đây! 🏆🚘"';
+    }
+  };
+
+  // ================= SPENDING MANAGER VIEW HANDLERS =================
+  window.openSpendingManager = function() {
+    const journey = document.getElementById('gato-journey-view');
+    const spending = document.getElementById('spending-manager-view');
+    if (journey) journey.classList.add('hidden');
+    if (spending) spending.classList.remove('hidden');
+  };
+
+  window.closeSpendingManager = function() {
+    const journey = document.getElementById('gato-journey-view');
+    const spending = document.getElementById('spending-manager-view');
+    if (journey) journey.classList.remove('hidden');
+    if (spending) spending.classList.add('hidden');
+  };
+
+  // ================= GATO JOURNEY VIEW HANDLERS =================
+  window.openGoalSelectionView = function() {
+    const journey = document.getElementById('gato-journey-view');
+    const selection = document.getElementById('goal-selection-view');
+    const chat = document.getElementById('chat-container');
+    const heading = document.getElementById('discovery-heading');
+    const grid = document.getElementById('goal-grid');
+    const backBtn = document.getElementById('back-to-grid-btn');
+    const backLink = document.getElementById('back-to-home-link');
+
+    if (journey) journey.classList.add('hidden');
+    if (selection) selection.classList.remove('hidden');
+    if (chat) chat.classList.add('hidden');
+    if (grid) grid.classList.remove('hidden');
+    if (heading) heading.classList.remove('hidden');
+    if (backBtn) backBtn.classList.add('hidden');
+    if (backLink) backLink.classList.remove('hidden');
+  };
+
+  window.closeGoalSelectionView = function() {
+    const journey = document.getElementById('gato-journey-view');
+    const selection = document.getElementById('goal-selection-view');
+    if (journey) journey.classList.remove('hidden');
+    if (selection) selection.classList.add('hidden');
+  };
+
+  // Override resetToGoalGrid to also close and return to GATO journey
+  const originalResetGrid = window.resetToGoalGrid;
+  window.resetToGoalGrid = function() {
+    const grid = document.getElementById('goal-grid');
+    const heading = document.getElementById('discovery-heading');
+    const backBtn = document.getElementById('back-to-grid-btn');
+    const backLink = document.getElementById('back-to-home-link');
+    const chat = document.getElementById('chat-container');
+    
+    if (grid) grid.classList.remove('hidden');
+    if (heading) heading.classList.remove('hidden');
+    if (backBtn) backBtn.classList.add('hidden');
+    if (backLink) backLink.classList.remove('hidden');
+    if (chat) chat.classList.add('hidden');
+
+    // Go back one more level to GATO journey
+    closeGoalSelectionView();
+  };
+
+  // ================= VOICE RECOGNITION SIMULATION =================
+  let voiceTimer = null;
+
+  window.startVoiceRecognition = function() {
+    const overlay = document.getElementById('voice-overlay-screen');
+    const title = document.getElementById('voice-status-title');
+    const subtitle = document.getElementById('voice-status-subtitle');
+    if (!overlay) return;
+
+    overlay.classList.remove('hidden');
+    if (title) title.innerText = "ĐANG NGHE GIỌNG CẬU... 🎙️";
+    if (subtitle) subtitle.innerText = '"Nói mốc thời gian hoặc số tiền cậu muốn tích luỹ nhé!"';
+
+    // Simulate listening for 2 seconds
+    voiceTimer = setTimeout(() => {
+      playBeep();
+      if (title) title.innerText = "ĐANG XỬ LÝ... ✨";
+      if (subtitle) subtitle.innerText = '"Mình muốn tích lũy khoảng 42 triệu đồng trước tháng 12/2027"';
+
+      // After 1.5 seconds, complete recognition and auto-populate
+      voiceTimer = setTimeout(() => {
+        overlay.classList.add('hidden');
+        
+        // Auto fill goal parameters
+        selectedGoalText = "Du lịch Nhật";
+        selectedGoalEmoji = "🇯🇵";
+        
+        // Open chat container automatically
+        openGoalSelectionView();
+        
+        const grid = document.getElementById('goal-grid');
+        const heading = document.getElementById('discovery-heading');
+        const backBtn = document.getElementById('back-to-grid-btn');
+        const backLink = document.getElementById('back-to-home-link');
+        const chat = document.getElementById('chat-container');
+        
+        if (grid) grid.classList.add('hidden');
+        if (heading) heading.classList.add('hidden');
+        if (backBtn) backBtn.classList.remove('hidden');
+        if (backLink) backLink.classList.add('hidden');
+        if (chat) chat.classList.remove('hidden');
+
+        chatMessagesList.innerHTML = '';
+        chatOptionsContainer.innerHTML = '';
+
+        // Play BeCar tone success message
+        showAIQuery("Ui chao! Tớ đã nhận diện được giọng nói xịn xò của cậu rồi nè! Cậu muốn tích lũy cho mục tiêu <strong>🇯🇵 Du lịch Nhật</strong> đúng hông? Tớ đã tự động cấu hình mốc <strong>Tháng 12/2027</strong> và số tiền <strong>42.000.000đ</strong> cho cậu rồi nha! 🥰✨", [
+          { text: "Đồng ý xem lộ trình AI", value: "ai_proposal" },
+          { text: "Tự điều chỉnh thủ công", value: "manual" }
+        ], handleStep3Response);
+
+      }, 1500);
+    }, 2000);
+  };
+
+  window.cancelVoiceRecognition = function() {
+    const overlay = document.getElementById('voice-overlay-screen');
+    if (overlay) overlay.classList.add('hidden');
+    if (voiceTimer) {
+      clearTimeout(voiceTimer);
+      voiceTimer = null;
+    }
+  };
 
   // ================= QR SCANNER FUNCTIONS =================
   let webcamStream = null;
